@@ -4,19 +4,25 @@ public class Persona {
 	// Variables de instancia (siempre privadas)
 	private Long id;
 	private String nombre;
+	private String apellidos;
 	
 	// Constructores
-	public Persona(Long id, String nombre) {
+	public Persona(Long id, String nombre, String apellidos) {
 		setId(id);
 		setNombre(nombre);
+		setApellidos(apellidos);
+	}
+	
+	public Persona(Long id, String nombre) {
+		this(id, nombre, null);
 	}
 	
 	public Persona(Persona persona) {
-		this(persona.getId(), persona.getNombre());
+		this(persona.getId(), persona.getNombre(), persona.getApellidos());
 	}
 	
 	public Persona() { // Implícito si no hay otro constructor
-		this(null, "ANÓNIMO");
+		this(null, "ANÓNIMO", null);
 	}
 	
 	// Métodos de acceso (getters y setters)
@@ -43,5 +49,22 @@ public class Persona {
 		}
 		
 		this.nombre = nombre.trim();
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+	
+	// Métodos de instancia
+	public String getNombreCompleto() {
+		return getNombre() + " " + getApellidos();
+	}
+	
+	public String getInformacion() {
+		return getId() + ": " + getNombre() + ", " + getApellidos();
 	}
 }

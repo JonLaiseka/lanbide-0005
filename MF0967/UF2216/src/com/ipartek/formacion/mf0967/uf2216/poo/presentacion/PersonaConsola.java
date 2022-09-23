@@ -48,5 +48,12 @@ public class PersonaConsola {
 		System.out.println(p3);
 		System.out.println(p3.getId());
 		System.out.println(p3.getNombre());
+		
+		Persona p4 = new Persona(4L, "Javier", "Lete");
+		
+		System.out.println(p4);
+		System.out.println(p4.getId());
+		System.out.println(p4.getNombreCompleto());
+		System.out.println(p4.getInformacion());		
 	}
 }

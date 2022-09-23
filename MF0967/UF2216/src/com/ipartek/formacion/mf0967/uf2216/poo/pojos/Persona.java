@@ -11,6 +11,10 @@ public class Persona {
 		setNombre(nombre);
 	}
 	
+	public Persona(Persona persona) {
+		this(persona.getId(), persona.getNombre());
+	}
+	
 	public Persona() { // Implícito si no hay otro constructor
 		this(null, "ANÓNIMO");
 	}

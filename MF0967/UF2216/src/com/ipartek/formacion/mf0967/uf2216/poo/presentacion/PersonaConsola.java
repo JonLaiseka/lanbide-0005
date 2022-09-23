@@ -1,9 +1,12 @@
 package com.ipartek.formacion.mf0967.uf2216.poo.presentacion;
 
 import com.ipartek.formacion.mf0967.uf2216.poo.pojos.Persona;
+import com.ipartek.formacion.mf0967.uf2216.poo.pojos.Persona.Formato;
 
 public class PersonaConsola {
 	public static void main(String[] args) {
+		Persona.setFormato(Formato.MINUSCULAS);
+		
 		Persona p;
 		p = new Persona(null, "   Javier Lete   ");
 		
@@ -54,6 +57,8 @@ public class PersonaConsola {
 		System.out.println(p4);
 		System.out.println(p4.getId());
 		System.out.println(p4.getNombreCompleto());
-		System.out.println(p4.getInformacion());		
+		System.out.println(p4.getInformacion());
+		
+		System.out.println(Persona.NOMBRE_POR_DEFECTO);
 	}
 }

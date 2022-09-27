@@ -1,5 +1,7 @@
 package com.ipartek.formacion.mf0967.uf2216.poo.pojos;
 
+import java.util.Objects;
+
 public class Persona {
 	// Enumeración
 	public static enum Formato {
@@ -112,4 +114,29 @@ public class Persona {
 			return dato;
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "Persona [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(apellidos, id, nombre);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Persona other = (Persona) obj;
+		return Objects.equals(apellidos, other.apellidos) && Objects.equals(id, other.id)
+				&& Objects.equals(nombre, other.nombre);
+	}
+	
+	
 }

@@ -1,5 +1,7 @@
 package com.ipartek.formacion.mf0967.uf2216.poo.pojos;
 
+import java.util.Objects;
+
 public class Cliente extends Persona {
 	private String nif;
 
@@ -25,5 +27,32 @@ public class Cliente extends Persona {
 	public String getInformacion() {
 		return super.getInformacion() + ", " + getNif();
 	}
+
+	@Override
+	public String toString() {
+		return "Cliente [nif=" + nif + ", toString()=" + super.toString() + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(nif);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		return Objects.equals(nif, other.nif);
+	}
+	
+	
 	
 }

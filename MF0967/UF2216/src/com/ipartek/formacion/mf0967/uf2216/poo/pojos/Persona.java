@@ -50,7 +50,7 @@ public class Persona {
 
 	public void setId(Long id) {
 		if (id != null && id < 0) {
-			throw new RuntimeException("No se admiten ids negativos");
+			throw new PojosException("No se admiten ids negativos");
 		}
 
 		this.id = id;

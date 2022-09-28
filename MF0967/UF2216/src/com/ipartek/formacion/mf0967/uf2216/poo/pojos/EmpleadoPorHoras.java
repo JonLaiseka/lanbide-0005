@@ -3,6 +3,8 @@ package com.ipartek.formacion.mf0967.uf2216.poo.pojos;
 import java.math.BigDecimal;
 
 public class EmpleadoPorHoras extends Empleado {
+	private static final long serialVersionUID = 1L;
+	
 	private BigDecimal precioHora;
 	private Integer numeroHorasMensuales;
 	

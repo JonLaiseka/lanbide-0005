@@ -3,6 +3,8 @@ package com.ipartek.formacion.mf0967.uf2216.poo.pojos;
 import java.math.BigDecimal;
 
 public abstract class Empleado extends Persona {
+	private static final long serialVersionUID = 1L;
+	
 	private String numeroSeguridadSocial;
 
 	public Empleado(Long id, String nombre, String apellidos, String numeroSeguridadSocial) {

@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class EmpleadoIndefinido extends Empleado {
+	private static final long serialVersionUID = 1L;
+	
 	private BigDecimal sueldoAnual;
 	private Integer numeroPagas;
 	

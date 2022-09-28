@@ -3,6 +3,8 @@ package com.ipartek.formacion.mf0967.uf2216.poo.pojos;
 import java.util.Objects;
 
 public class Cliente extends Persona {
+	private static final long serialVersionUID = 1L;
+	
 	private String nif;
 
 	public Cliente(Long id, String nombre, String apellidos, String nif) {

@@ -1,9 +1,12 @@
 package com.ipartek.formacion.mf0967.uf2216.poo.pojos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Espacio {
+public class Espacio implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private Long id;
 	private String nombre;
 	

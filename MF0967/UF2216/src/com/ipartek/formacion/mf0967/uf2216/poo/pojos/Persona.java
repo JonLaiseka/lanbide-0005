@@ -1,8 +1,11 @@
 package com.ipartek.formacion.mf0967.uf2216.poo.pojos;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Persona {
+public class Persona implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	// Enumeración
 	public static enum Formato {
 		SIN_FORMATO, MAYUSCULAS, MINUSCULAS

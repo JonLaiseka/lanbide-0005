@@ -2,9 +2,6 @@ package com.ipartek.formacion.mf0967.uf2216.doscapas.presentacion;
 
 import static com.ipartek.formacion.mf0967.uf2216.bibliotecas.Consola.*;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-
 import com.ipartek.formacion.mf0967.uf2216.doscapas.accesodatos.Dao;
 import com.ipartek.formacion.mf0967.uf2216.doscapas.accesodatos.DaoMemoriaProducto;
 import com.ipartek.formacion.mf0967.uf2216.doscapas.entidades.EntidadesException;

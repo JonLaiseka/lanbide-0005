@@ -31,74 +31,48 @@ public class Consola {
 	}
 	
 	public static int gInt(String mensaje) {
-		boolean correcto = false;
-		
-		int i = 0;
-		
-		do {
-			try {
-				String texto = gString(mensaje);
-				i = Integer.parseInt(texto);
-				correcto = true;
-			} catch (NumberFormatException e) {
-				ple("No es un número válido");
-			} 
-		} while (!correcto);
-		
-		return i;
+		return (int) gObject(mensaje, 0);
 	}
 	
 	public static long gLong(String mensaje) {
-		boolean correcto = false;
-		
-		long l = 0;
-		
-		do {
-			try {
-				String texto = gString(mensaje);
-				l = Long.parseLong(texto);
-				correcto = true;
-			} catch (NumberFormatException e) {
-				ple("No es un número válido");
-			} 
-		} while (!correcto);
-		
-		return l;
+		return (long) gObject(mensaje, 0L);
 	}
 	
 	public static BigDecimal gBigDecimal(String mensaje) {
+		return (BigDecimal) gObject(mensaje, BigDecimal.ZERO);
+	}
+	
+	public static LocalDate gLocalDate(String mensaje) {
+		return (LocalDate) gObject(mensaje, LocalDate.now());
+	}
+	
+	public static Object gObject(String mensaje, Object o) {
 		boolean correcto = false;
-		
-		BigDecimal bd = null;
 		
 		do {
 			try {
 				String texto = gString(mensaje);
-				bd = new BigDecimal(texto);
+				
+				if(o instanceof LocalDate) {
+					o = LocalDate.parse(texto, DateTimeFormatter.ISO_DATE);
+				} else if(o instanceof Integer) {
+					o = Integer.parseInt(texto);
+				} else if(o instanceof Long) {
+					o = Long.parseLong(texto);
+				} else if(o instanceof BigDecimal) {
+					o = new BigDecimal(texto);
+				} else {
+					throw new ConsolaException("El tipo " + o.getClass().getName() + " no está soportado");
+				}
+				
 				correcto = true;
 			} catch (NumberFormatException e) {
-				ple("No es un número válido");
-			} 
+				ple("El número no es válido");
+			} catch(DateTimeParseException e) {
+				ple("La fecha no es válida");
+			}
 		} while (!correcto);
 		
-		return bd;
-	}
-	
-	public static LocalDate gLocalDate(String mensaje) {
-		boolean correcto = false;
-		
-		LocalDate ld = null;
-		
-		do {
-			try {
-				String texto = gString(mensaje + " (AAAA-MM-DD)");
-				ld = LocalDate.parse(texto, DateTimeFormatter.ISO_DATE);
-				correcto = true;
-			} catch (DateTimeParseException e) {
-				ple("No es una fecha válida");
-			} 
-		} while (!correcto);
-		
-		return ld;
+		return o;
 	}
 }

@@ -31,39 +31,31 @@ public class Consola {
 	}
 	
 	public static int gInt(String mensaje) {
-		return (int) gObject(mensaje, 0);
+		return (int) gObject(mensaje, new IntegerConvertible());
 	}
 	
 	public static long gLong(String mensaje) {
-		return (long) gObject(mensaje, 0L);
+		return (long) gObject(mensaje, new LongConvertible());
 	}
 	
 	public static BigDecimal gBigDecimal(String mensaje) {
-		return (BigDecimal) gObject(mensaje, BigDecimal.ZERO);
+		return (BigDecimal) gObject(mensaje, new BigDecimalConvertible());
 	}
 	
 	public static LocalDate gLocalDate(String mensaje) {
-		return (LocalDate) gObject(mensaje, LocalDate.now());
+		return (LocalDate) gObject(mensaje, new LocalDateConvertible());
 	}
 	
-	public static Object gObject(String mensaje, Object o) {
+	public static Object gObject(String mensaje, Convertible c) {
 		boolean correcto = false;
+		
+		Object o = null;
 		
 		do {
 			try {
 				String texto = gString(mensaje);
 				
-				if(o instanceof LocalDate) {
-					o = LocalDate.parse(texto, DateTimeFormatter.ISO_DATE);
-				} else if(o instanceof Integer) {
-					o = Integer.parseInt(texto);
-				} else if(o instanceof Long) {
-					o = Long.parseLong(texto);
-				} else if(o instanceof BigDecimal) {
-					o = new BigDecimal(texto);
-				} else {
-					throw new ConsolaException("El tipo " + o.getClass().getName() + " no está soportado");
-				}
+				o = c.convertir(texto);
 				
 				correcto = true;
 			} catch (NumberFormatException e) {
@@ -74,5 +66,44 @@ public class Consola {
 		} while (!correcto);
 		
 		return o;
+	}
+}
+
+interface Convertible {
+	Object convertir(String texto);
+}
+
+class LocalDateConvertible implements Convertible {
+
+	@Override
+	public Object convertir(String texto) {
+		return LocalDate.parse(texto, DateTimeFormatter.ISO_DATE);
+	}
+	
+}
+
+class IntegerConvertible implements Convertible {
+
+	@Override
+	public Object convertir(String texto) {
+		return Integer.parseInt(texto);
+	}
+	
+}
+
+class LongConvertible implements Convertible {
+
+	@Override
+	public Object convertir(String texto) {
+		return Long.parseLong(texto);
+	}
+	
+}
+
+class BigDecimalConvertible implements Convertible {
+
+	@Override
+	public Object convertir(String texto) {
+		return new BigDecimal(texto);
 	}
 }

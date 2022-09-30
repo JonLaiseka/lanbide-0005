@@ -31,19 +31,42 @@ public class Consola {
 	}
 	
 	public static int gInt(String mensaje) {
-		return (int) gObject(mensaje, new IntegerConvertible());
+		return (int) gObject(mensaje, new Convertible() {
+			@Override
+			public Object convertir(String texto) {
+				return Integer.parseInt(texto);
+			}
+		});
 	}
 	
 	public static long gLong(String mensaje) {
-		return (long) gObject(mensaje, new LongConvertible());
+		return (long) gObject(mensaje, new Convertible() {
+			
+			@Override
+			public Object convertir(String texto) {
+				return Long.parseLong(texto);
+			}
+		});
 	}
 	
 	public static BigDecimal gBigDecimal(String mensaje) {
-		return (BigDecimal) gObject(mensaje, new BigDecimalConvertible());
+		return (BigDecimal) gObject(mensaje, new Convertible() {
+			
+			@Override
+			public Object convertir(String texto) {
+				return new BigDecimal(texto);
+			}
+		});
 	}
 	
 	public static LocalDate gLocalDate(String mensaje) {
-		return (LocalDate) gObject(mensaje, new LocalDateConvertible());
+		return (LocalDate) gObject(mensaje, new Convertible() {
+			
+			@Override
+			public Object convertir(String texto) {
+				return LocalDate.parse(texto, DateTimeFormatter.ISO_DATE);
+			}
+		});
 	}
 	
 	public static Object gObject(String mensaje, Convertible c) {
@@ -71,39 +94,4 @@ public class Consola {
 
 interface Convertible {
 	Object convertir(String texto);
-}
-
-class LocalDateConvertible implements Convertible {
-
-	@Override
-	public Object convertir(String texto) {
-		return LocalDate.parse(texto, DateTimeFormatter.ISO_DATE);
-	}
-	
-}
-
-class IntegerConvertible implements Convertible {
-
-	@Override
-	public Object convertir(String texto) {
-		return Integer.parseInt(texto);
-	}
-	
-}
-
-class LongConvertible implements Convertible {
-
-	@Override
-	public Object convertir(String texto) {
-		return Long.parseLong(texto);
-	}
-	
-}
-
-class BigDecimalConvertible implements Convertible {
-
-	@Override
-	public Object convertir(String texto) {
-		return new BigDecimal(texto);
-	}
 }

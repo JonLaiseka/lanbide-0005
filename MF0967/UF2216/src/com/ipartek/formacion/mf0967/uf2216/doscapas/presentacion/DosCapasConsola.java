@@ -17,7 +17,7 @@ public class DosCapasConsola {
 	private static final int BORRAR = 5;
 	private static final int SALIR = 0;
 
-	private static final Dao<Producto> dao = DaoMemoriaProducto.getInstancia();
+	private static final Dao<Producto> DAO = DaoMemoriaProducto.getInstancia();
 	
 	public static void main(String[] args) {
 		int opcion;
@@ -72,7 +72,7 @@ public class DosCapasConsola {
 	private static void obtenerTodos() {
 		pl();
 		
-		for(Producto p: dao.obtenerTodos()) {
+		for(Producto p: DAO.obtenerTodos()) {
 			mostrarProducto(p);
 		}
 		
@@ -81,7 +81,7 @@ public class DosCapasConsola {
 
 	private static void obtenerPorId() {
 		long id = gLong("Introduce el id a buscar");
-		Producto producto = dao.obtenerPorId(id);
+		Producto producto = DAO.obtenerPorId(id);
 		
 		pl();
 		mostrarProducto(producto);
@@ -91,7 +91,7 @@ public class DosCapasConsola {
 	private static void insertar() {
 		Producto p = pedirDatosProducto(PEDIR_DATOS_INSERTAR);
 		
-		dao.insertar(p);
+		DAO.insertar(p);
 		
 		pl(p);
 		pl("Producto insertado");
@@ -100,7 +100,7 @@ public class DosCapasConsola {
 	private static void modificar() {
 		Producto p = pedirDatosProducto(PEDIR_DATOS_MODIFICAR);
 		
-		dao.modificar(p);
+		DAO.modificar(p);
 		
 		pl(p);
 		pl("Producto modificado");
@@ -108,7 +108,7 @@ public class DosCapasConsola {
 
 	private static void borrar() {
 		long id = gLong("Introduce el id a borrar");
-		dao.borrar(id);
+		DAO.borrar(id);
 		
 		pl();
 		pl("Producto borrado");

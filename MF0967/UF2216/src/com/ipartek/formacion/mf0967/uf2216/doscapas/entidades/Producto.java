@@ -42,7 +42,7 @@ public class Producto {
 			throw new EntidadesException("El producto tiene que tener un nombre de 5 caracteres o más");
 		}
 		
-		this.nombre = nombre;
+		this.nombre = nombre.trim();
 	}
 
 	public LocalDate getCaducidad() {

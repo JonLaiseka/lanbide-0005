@@ -1,0 +1,226 @@
+/* Variables de CSS (Custom Properties) */
+
+:root {
+    --color-primario: darkblue;
+    --color-secundario: gray;
+    --tamano-letra: 16px;
+    --margen-normal: 1rem;
+    --margen-mediano: 0.5rem;
+    --margen-pequeno: 0.25rem;
+}
+
+/* GENERALES */
+
+/* Bloque */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: var(--tamano-letra);
+}
+
+p, li, dt, dd {
+    margin: var(--margen-mediano) 0;
+    line-height: 1.25;
+}
+
+ul {
+    list-style: square inside;
+}
+
+ol {
+    list-style: lower-alpha inside;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd::before {
+    content: '=> ';
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: var(--margen-normal);
+    margin-bottom: var(--margen-normal);
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.25rem;
+    background-color: var(--color-secundario);
+    color: white;
+    padding: var(--margen-normal);
+    margin: 0 calc(-1 * var(--margen-normal));
+}
+
+h4 {
+    font-size: 1rem;
+}
+
+h5 {
+    font-size: 0.875rem;
+}
+
+h6 {
+    font-size: 0.75rem;
+}
+
+/* Inline */
+
+.idea-central {
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primario);
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+/* Cabecera */
+
+header {
+    background-color: var(--color-secundario);
+    color: white;
+    padding: var(--margen-normal);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* Menú */
+
+body>nav {
+    border-top: 1px solid black;
+    text-align: center;
+    padding: var(--margen-normal);
+    background-color: var(--color-secundario);
+}
+
+body>nav a {
+    display: inline-block;
+    color: white;
+    font-weight: normal;
+    padding: var(--margen-pequeno);
+    width: 100%;
+}
+
+body>nav a:hover {
+    background-color: white;
+    color: var(--color-secundario);
+    text-decoration: none;
+}
+
+/* Main */
+
+main {
+    padding: var(--margen-normal);
+}
+
+/* Multimedia */
+
+figure, img, audio, video, iframe {
+    width: 100%;
+
+    margin: var(--margen-normal) 0;
+}
+
+img, video, .iframe {
+    box-shadow: 0.5rem 0.5rem 1rem gray;
+}
+
+figcaption {
+    text-align: right;
+    color: white;
+    margin-top: -3rem;
+    margin-right: 1rem;
+    text-shadow: 1px 1px 2px black;
+}
+
+.r16x9 {
+    padding-bottom: 56.25%;
+}
+
+.r4x3 {
+    padding-bottom: 75%;
+}
+
+.iframe {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+}
+
+.iframe iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Tablas */
+
+table {
+    margin: var(--margen-normal) 0;
+    width: 100%;
+    border: 1px solid black;
+}
+
+caption {
+    padding: var(--margen-pequeno);
+    font-weight: bold;
+}
+
+thead, tfoot {
+    background-color: var(--color-secundario);
+    color: white;
+    font-weight: bold;
+}
+
+th, td {
+    padding: var(--margen-mediano);
+    border: 1px solid black;
+}
+
+th, td {
+    text-align: left;
+}
+
+th:first-of-type {
+    text-align: right;
+}
+
+thead tr:first-of-type th {
+    text-align: center;
+}
+
+tbody tr:nth-of-type(even) {
+ background-color: var(--color-secundario);
+}

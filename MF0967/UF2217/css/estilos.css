@@ -11,6 +11,10 @@
 
 /* GENERALES */
 
+* {
+    box-sizing: border-box;
+}
+
 /* Bloque */
 
 body {
@@ -18,12 +22,15 @@ body {
     font-size: var(--tamano-letra);
 }
 
-p, li, dt, dd {
+p,
+li,
+dt,
+dd {
     margin: var(--margen-mediano) 0;
-    line-height: 1.25;
+    line-height: 1.5;
 }
 
-ul {
+main ul {
     list-style: square inside;
 }
 
@@ -104,9 +111,9 @@ em {
     font-style: italic;
 }
 
-/* Cabecera */
+/* Cabecera y pie */
 
-header {
+header, footer {
     background-color: var(--color-secundario);
     color: white;
     padding: var(--margen-normal);
@@ -137,21 +144,27 @@ body>nav a:hover {
     text-decoration: none;
 }
 
-/* Main */
+/* Márgenes de contenido */
 
-main {
+main, aside {
     padding: var(--margen-normal);
 }
 
 /* Multimedia */
 
-figure, img, audio, video, iframe {
+figure,
+img,
+audio,
+video,
+iframe {
     width: 100%;
 
     margin: var(--margen-normal) 0;
 }
 
-img, video, .iframe {
+img,
+video,
+.iframe {
     box-shadow: 0.5rem 0.5rem 1rem gray;
 }
 
@@ -190,7 +203,8 @@ figcaption {
 table {
     margin: var(--margen-normal) 0;
     width: 100%;
-    border: 1px solid black;
+    border-radius: var(--margen-pequeno);
+    overflow: hidden;
 }
 
 caption {
@@ -198,18 +212,22 @@ caption {
     font-weight: bold;
 }
 
-thead, tfoot {
+thead,
+tfoot,
+caption {
     background-color: var(--color-secundario);
     color: white;
     font-weight: bold;
 }
 
-th, td {
+th,
+td {
     padding: var(--margen-mediano);
     border: 1px solid black;
 }
 
-th, td {
+th,
+td {
     text-align: left;
 }
 
@@ -222,5 +240,46 @@ thead tr:first-of-type th {
 }
 
 tbody tr:nth-of-type(even) {
- background-color: var(--color-secundario);
+    background-color: var(--color-secundario);
+}
+
+
+/* Formularios */
+
+form {
+    margin: var(--margen-normal) 0;
+}
+
+fieldset {
+    border: 1px solid var(--color-secundario);
+    border-radius: var(--margen-mediano);
+    padding: var(--margen-normal);
+}
+
+label {
+    display: inline-block;
+    width: 9rem;
+}
+
+input,
+button,
+select,
+textarea {
+    border: 1px solid var(--color-secundario);
+    margin-bottom: var(--margen-mediano);
+    padding: var(--margen-pequeno);
+    border-radius: var(--margen-pequeno);
+}
+
+form:last-of-type input,
+form:last-of-type select,
+form:last-of-type textarea,
+form:last-of-type fieldset:last-of-type button {
+    width: 100%;
+}
+
+/* Pie */
+
+footer {
+
 }

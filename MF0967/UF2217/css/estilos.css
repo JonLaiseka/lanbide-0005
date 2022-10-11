@@ -18,7 +18,7 @@
 /* Bloque */
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Quicksand', sans-serif;
     font-size: var(--tamano-letra);
 }
 
@@ -52,6 +52,7 @@ h3,
 h4,
 h5,
 h6 {
+    font-family: 'Nabla', cursive;
     margin-top: var(--margen-normal);
     margin-bottom: var(--margen-normal);
     font-weight: bold;

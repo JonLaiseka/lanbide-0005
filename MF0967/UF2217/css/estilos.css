@@ -114,7 +114,8 @@ em {
 
 /* Cabecera y pie */
 
-header, footer {
+header,
+footer {
     background-color: var(--color-secundario);
     color: white;
     padding: var(--margen-normal);
@@ -147,7 +148,8 @@ body>nav a:hover {
 
 /* Márgenes de contenido */
 
-main, aside {
+main,
+aside {
     padding: var(--margen-normal);
 }
 
@@ -277,4 +279,211 @@ form:last-of-type select,
 form:last-of-type textarea,
 form:last-of-type fieldset:last-of-type button {
     width: 100%;
+}
+
+@media (min-width: 768px) {
+    body>nav>ul {
+        display: flex;
+    }
+
+    #parrafos p,
+    #inline p {
+        column-count: 2;
+    }
+
+    #listas {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    #listas h3,
+    #formularios h3 {
+        width: calc(100% + 2 * var(--margen-normal));
+    }
+
+    #formularios {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--margen-normal);
+    }
+
+    #formularios h3,
+    #formularios form:last-of-type {
+        grid-column-end: span 2;
+    }
+
+    #formularios form:last-of-type {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 2fr 1fr;
+        gap: var(--margen-normal);
+    }
+
+    #formularios form:last-of-type fieldset:first-of-type {
+        grid-row-end: span 2;
+    }
+
+    aside ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: var(--margen-normal);
+    }
+}
+
+@media (min-width: 1024px) {
+    #html h2 {
+        grid-area: titulo;
+    }
+
+    #parrafos {
+        grid-area: parrafos;
+    }
+
+    #inline {
+        grid-area: inline;
+    }
+
+    #listas {
+        grid-area: listas;
+    }
+
+    #multimedia {
+        grid-area: multimedia;
+    }
+
+    #tablas {
+        grid-area: tablas;
+    }
+
+    #formularios {
+        grid-area: formularios;
+    }
+
+    #html {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        gap: calc(2 * var(--margen-normal));
+
+        grid-template-areas:
+            "titulo titulo"
+            "parrafos inline"
+            "parrafos listas"
+            "multimedia tablas"
+            "multimedia formularios"
+        ;
+    }
+
+    #formularios,
+    #formularios form:last-of-type {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        gap: 0;
+    }
+
+    /*#formularios {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        align-content: start;
+    }
+
+    #formularios form {
+        grid-column-start: 1;
+    }
+
+    #formularios h3, #formularios form:last-of-type {
+        grid-column-start: 1;
+        grid-column-end: 1;
+    }
+
+    #formularios form:last-of-type {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    #formularios form:last-of-type fieldset:first-of-type {
+        grid-row-end: 1;
+    }*/
+
+}
+
+@media (min-width: 1440px) {
+    #html {
+        grid-template-columns: 2fr 1fr;
+
+        /* grid-template-areas:
+            "titulo titulo titulo"
+            "parrafos parrafos inline"
+            "parrafos parrafos listas"
+            "multimedia multimedia tablas"
+            "multimedia multimedia formularios"
+        ; */
+    }
+}
+
+@media (min-width: 2560px) {
+    #html {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+
+        grid-template-areas:
+            "titulo titulo titulo titulo"
+            "parrafos multimedia multimedia formularios"
+            "inline multimedia multimedia formularios"
+            "listas multimedia multimedia formularios"
+            "tablas multimedia multimedia formularios"
+            ". multimedia multimedia formularios"
+        ;
+    }
+
+    body>header {
+        grid-area: cabecera;
+    }
+
+    body>nav {
+        grid-area: menu;
+    }
+
+    main {
+        grid-area: principal;
+    }
+
+    aside {
+        grid-area: anuncios;
+    }
+
+    body>footer {
+        grid-area: pie;
+    }
+
+    body {
+        display: grid;
+        grid-template-columns: 1fr 12rem;
+        grid-template-rows: auto;
+
+        grid-template-areas:
+            "cabecera cabecera"
+            "menu menu"
+            "principal anuncios"
+            "pie pie"
+        ;
+    }
+
+    aside {
+        background-color: lightgray;
+    }
+}
+
+@media print {
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color: black;
+    }
+    body>nav,
+    aside {
+        display: none;
+    }
 }

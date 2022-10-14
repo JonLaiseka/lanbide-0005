@@ -8,262 +8,282 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/bootstrap.min.js"></script>
-
-    <style>
-        img, video, audio, iframe {
-            width: 100%;
-        }
-    </style>
 </head>
 
-<body>
+<body class="container">
     <!-- header+nav+main+aside+footer -->
+    <div class="row">
+        <header>
+            <h1>Ejemplos de HTML</h1>
+        </header>
+        <nav>
+            <!-- ul>li*5>a[href="#"]{Enlace $} -->
+            <ul>
+                <li><a href="#">Enlace 1</a></li>
+                <li><a href="#">Enlace 2</a></li>
+                <li><a href="#">Enlace 3</a></li>
+            </ul>
+        </nav>
+        <main class="col-xl">
+            <!-- section#html>h2>{HTML} -->
+            <section id="html" class="row">
+                <h2><i class="fa-brands fa-html5"></i> HTML</h2>
 
-    <header>
-        <h1>Ejemplos de HTML</h1>
-    </header>
-    <nav>
-        <!-- ul>li*5>a[href="#"]{Enlace $} -->
-        <ul>
-            <li><a href="#">Enlace 1</a></li>
-            <li><a href="#">Enlace 2</a></li>
-            <li><a href="#">Enlace 3</a></li>
-        </ul>
-    </nav>
-    <main>
-        <!-- section#html>h2>{HTML} -->
-        <section id="html">
-            <h2><i class="fa-brands fa-html5"></i> HTML</h2>
+                <article id="parrafos" class="col-md">
+                    <h3>Párrafos</h3>
 
-            <article id="parrafos">
-                <h3>Párrafos</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere laborum voluptates iste harum
+                        voluptatem ab, nesciunt quibusdam dicta ex odio animi ad inventore temporibus aperiam, nulla
+                        quas
+                        tempore enim laudantium.</p>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit illo, quia quae, quas soluta
+                        accusantium laborum, ea dolores reprehenderit atque quis minus! Earum quas sed quia modi ea
+                        aspernatur iste?
+                        Qui vero nesciunt optio atque vitae, libero rem nulla consectetur dolor voluptatem excepturi
+                        explicabo dicta iste nam sunt in quisquam dolorum ratione vel suscipit quos est! Quia eaque
+                        recusandae aperiam?
+                        Voluptates laborum ducimus consequuntur. Officia a impedit nam expedita error laudantium,
+                        debitis
+                        dignissimos deserunt eveniet numquam porro libero possimus facere tempore aliquam veniam ipsam
+                        nisi,
+                        iure fuga iusto eaque fugiat!
+                        Temporibus ducimus ut quisquam quis assumenda hic provident quaerat adipisci ullam minima illum,
+                        dolor tenetur maiores iste! Quia, aliquam aperiam! Tempore odit vitae iure magnam repudiandae
+                        error
+                        cupiditate. Sint, illo.
+                        Modi, quod accusamus iusto assumenda illo repudiandae quia nisi deserunt laboriosam? Minima
+                        adipisci
+                        vitae laborum ea quos accusamus debitis eveniet eligendi, ullam cupiditate illo repellendus,
+                        iure,
+                        expedita beatae quas? Facere.</p>
+                </article>
+                <article id="inline" class="col-md">
+                    <h3>Inline</h3>
 
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere laborum voluptates iste harum
-                    voluptatem ab, nesciunt quibusdam dicta ex odio animi ad inventore temporibus aperiam, nulla quas
-                    tempore enim laudantium.</p>
-                <p>Lorem ipsum dolor sit amet.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit illo, quia quae, quas soluta
-                    accusantium laborum, ea dolores reprehenderit atque quis minus! Earum quas sed quia modi ea
-                    aspernatur iste?
-                    Qui vero nesciunt optio atque vitae, libero rem nulla consectetur dolor voluptatem excepturi
-                    explicabo dicta iste nam sunt in quisquam dolorum ratione vel suscipit quos est! Quia eaque
-                    recusandae aperiam?
-                    Voluptates laborum ducimus consequuntur. Officia a impedit nam expedita error laudantium, debitis
-                    dignissimos deserunt eveniet numquam porro libero possimus facere tempore aliquam veniam ipsam nisi,
-                    iure fuga iusto eaque fugiat!
-                    Temporibus ducimus ut quisquam quis assumenda hic provident quaerat adipisci ullam minima illum,
-                    dolor tenetur maiores iste! Quia, aliquam aperiam! Tempore odit vitae iure magnam repudiandae error
-                    cupiditate. Sint, illo.
-                    Modi, quod accusamus iusto assumenda illo repudiandae quia nisi deserunt laboriosam? Minima adipisci
-                    vitae laborum ea quos accusamus debitis eveniet eligendi, ullam cupiditate illo repellendus, iure,
-                    expedita beatae quas? Facere.</p>
-            </article>
-            <article id="inline">
-                <h3>Inline</h3>
+                    <p>
+                        Lorem <strong>ipsum</strong> dolor sit amet consectetur adipisicing elit. Delectus facilis
+                        ducimus
+                        nulla iste, maxime
+                        <span class="idea-central">obcaecati</span> voluptas <em>consectetur</em>. Quod, sit laudantium
+                        eum
+                        consequuntur ipsum dicta maxime odio
+                        quaerat <span class="idea-central">voluptate</span> totam quis?
+                    </p>
+                </article>
+                <article id="listas" class="col-12">
+                    <div class="row">
+                        <h3>Listas</h3>
 
-                <p>
-                    Lorem <strong>ipsum</strong> dolor sit amet consectetur adipisicing elit. Delectus facilis ducimus
-                    nulla iste, maxime
-                    <span class="idea-central">obcaecati</span> voluptas <em>consectetur</em>. Quod, sit laudantium eum
-                    consequuntur ipsum dicta maxime odio
-                    quaerat <span class="idea-central">voluptate</span> totam quis?
-                </p>
-            </article>
-            <article id="listas">
-                <h3>Listas</h3>
+                        <ul class="col-sm">
+                            <li>Elemento 1</li>
+                            <li>Elemento 2</li>
+                            <li>Elemento 3</li>
+                        </ul>
 
-                <ul>
-                    <li>Elemento 1</li>
-                    <li>Elemento 2</li>
-                    <li>Elemento 3</li>
-                </ul>
+                        <ol class="col-sm">
+                            <li>Elemento 1</li>
+                            <li>Elemento 2</li>
+                            <li>Elemento 3</li>
+                        </ol>
 
-                <ol>
-                    <li>Elemento 1</li>
-                    <li>Elemento 2</li>
-                    <li>Elemento 3</li>
-                </ol>
+                        <dl class="col-sm">
+                            <dt>HTML</dt>
+                            <dd>Hyper Text Markup Language</dd>
 
-                <dl>
-                    <dt>HTML</dt>
-                    <dd>Hyper Text Markup Language</dd>
+                            <dt>CSS</dt>
+                            <dd>Cascade Style Sheets</dd>
 
-                    <dt>CSS</dt>
-                    <dd>Cascade Style Sheets</dd>
+                            <dt>JS</dt>
+                            <dd>JavaScript</dd>
+                        </dl>
+                    </div>
+                </article>
 
-                    <dt>JS</dt>
-                    <dd>JavaScript</dd>
-                </dl>
-            </article>
+                <article id="multimedia" class="col-12">
+                    <div class="row row-cols-lg-2">
+                        <h3 class="col-lg-12">Multimedia</h3>
 
-            <article id="multimedia">
-                <h3>Multimedia</h3>
+                        <img class="img-thumbnail col-lg"
+                            src="https://via.placeholder.com/468x200/EEEEEE/000000?text=Foto%20de%20producto" alt="">
 
-                <img src="https://via.placeholder.com/468x200/EEEEEE/000000?text=Foto%20de%20producto" alt="">
+                        <figure class="figure col-lg">
+                            <img class="img-thumbnail" src="http://placeimg.com/640/480/people/grayscale"
+                                alt="Foto de persona aleatoria">
+                            <figcaption class="figure-caption">Foto de persona aleatoria</figcaption>
+                        </figure>
 
-                <figure>
-                    <img src="http://placeimg.com/640/480/people/grayscale" alt="Foto de persona aleatoria">
-                    <figcaption>Foto de persona aleatoria</figcaption>
-                </figure>
+                        <audio class="col-lg" src="//samplelib.com/lib/preview/mp3/sample-15s.mp3" controls></audio>
 
-                <audio src="//samplelib.com/lib/preview/mp3/sample-15s.mp3" controls></audio>
+                        <video class="col-lg"
+                            src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+                            controls></video>
 
-                <video src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
-                    controls></video>
-
-                <div class="iframe r4x3">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2905.762081771463!2d-2.9157860494739865!3d43.25640788591417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4e4fb46238d865%3A0xb671edfb1120ab06!2sIpartek%20Servicios%20Inform%C3%A1ticos!5e0!3m2!1ses!2ses!4v1665046724736!5m2!1ses!2ses"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-
-                <div class="iframe r4x3">
-                    <iframe src="https://www.youtube-nocookie.com/embed/SVGjOUnQZ58" title="YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                </div>
-                <div class="iframe r16x9">
-                    <iframe
-                        src="https://open.spotify.com/embed/playlist/03eZZBU0bY5hsiVrnFrA2p?utm_source=generator&theme=0"
-                        allowfullscreen=""
-                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                        loading="lazy"></iframe>
-                </div>
-            </article>
-
-            <article id="tablas">
-                <h3>Tablas</h3>
-
-                <table>
-                    <caption>Tablas</caption>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th colspan="2">Nombre completo</th>
-                        </tr>
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Apellidos</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Javier</td>
-                            <td>Lete</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Leslie</td>
-                            <td>Teslie</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Apellidos</th>
-                        </tr>
-                    </tfoot>
-                </table>
-            </article>
-
-            <article id="formularios">
-                <h3>Formularios</h3>
-
-                <form action="#">
-                    <fieldset>
-                        <legend>Login</legend>
-
-                        <div>
-                            <label for="correo">Correo electrónico</label>
-                            <input type="email" id="correo">
+                        <div class="col-lg">
+                            <div class="ratio ratio-1x1">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2905.762081771463!2d-2.9157860494739865!3d43.25640788591417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4e4fb46238d865%3A0xb671edfb1120ab06!2sIpartek%20Servicios%20Inform%C3%A1ticos!5e0!3m2!1ses!2ses!4v1665046724736!5m2!1ses!2ses"
+                                    allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
                         </div>
-                        <div>
-                            <label for="contrasena">Contraseña</label>
-                            <input type="password" id="contrasena">
+
+                        <div class="col-lg">
+                            <div class="ratio ratio-4x3">
+                                <iframe src="https://www.youtube-nocookie.com/embed/SVGjOUnQZ58"
+                                    title="YouTube video player"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>
                         </div>
-                        <div>
+                        <div class="col-lg">
+                            <div class="ratio ratio-16x9">
+                                <iframe
+                                    src="https://open.spotify.com/embed/playlist/03eZZBU0bY5hsiVrnFrA2p?utm_source=generator&theme=0"
+                                    allowfullscreen=""
+                                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                                    loading="lazy"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article id="tablas" class="col-lg-3">
+                    <h3>Tablas</h3>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped table-sm">
+                            <caption>Tablas</caption>
+                            <thead class="table-dark">
+                                <tr>
+                                    <th></th>
+                                    <th colspan="2">Nombre completo</th>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Apellidos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Javier</td>
+                                    <td>Lete</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Leslie</td>
+                                    <td>Teslie</td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="table-dark">
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Apellidos</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </article>
+
+                <article id="formularios" class="col-lg">
+                    <h3>Formularios</h3>
+
+                    <form action="#">
+                        <fieldset>
+                            <legend>Login</legend>
+
+                            <div>
+                                <label for="correo">Correo electrónico</label>
+                                <input type="email" id="correo">
+                            </div>
+                            <div>
+                                <label for="contrasena">Contraseña</label>
+                                <input type="password" id="contrasena">
+                            </div>
+                            <div>
+                                <button>Aceptar</button>
+                            </div>
+                        </fieldset>
+                    </form>
+
+                    <form action="https://www.google.com/search">
+                        <fieldset>
+                            <legend>Buscar por Google</legend>
+
+                            <input type="text" name="q" placeholder="Texto a buscar">
+
                             <button>Aceptar</button>
-                        </div>
-                    </fieldset>
-                </form>
+                        </fieldset>
+                    </form>
 
-                <form action="https://www.google.com/search">
-                    <fieldset>
-                        <legend>Buscar por Google</legend>
+                    <form action="#">
+                        <fieldset>
+                            <legend>Inputs</legend>
 
-                        <input type="text" name="q" placeholder="Texto a buscar">
+                            <input type="text">
+                            <input type="checkbox">
+                            <input type="radio" name="radios">
+                            <input type="radio" name="radios">
 
-                        <button>Aceptar</button>
-                    </fieldset>
-                </form>
+                            <input type="email">
+                            <input type="url">
+                            <input type="tel">
+                            <input type="number" step=".01" min="0" required>
+                            <input type="date">
+                            <input type="datetime-local">
+                            <input type="time">
+                            <input type="range">
 
-                <form action="#">
-                    <fieldset>
-                        <legend>Inputs</legend>
+                            <button>Aceptar</button>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Otros</legend>
 
-                        <input type="text">
-                        <input type="checkbox">
-                        <input type="radio" name="radios">
-                        <input type="radio" name="radios">
+                            <select>
+                                <option value="1">Uno</option>
+                                <option value="2">Dos</option>
+                                <option value="3">Tres</option>
+                            </select>
+                            <select multiple>
+                                <option value="1">Uno</option>
+                                <option value="2">Dos</option>
+                                <option value="3">Tres</option>
+                            </select>
+                            <textarea cols="30" rows="10"></textarea>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Botones</legend>
 
-                        <input type="email">
-                        <input type="url">
-                        <input type="tel">
-                        <input type="number" step=".01" min="0" required>
-                        <input type="date">
-                        <input type="datetime-local">
-                        <input type="time">
-                        <input type="range">
-
-                        <button>Aceptar</button>
-                    </fieldset>
-                    <fieldset>
-                        <legend>Otros</legend>
-
-                        <select>
-                            <option value="1">Uno</option>
-                            <option value="2">Dos</option>
-                            <option value="3">Tres</option>
-                        </select>
-                        <select multiple>
-                            <option value="1">Uno</option>
-                            <option value="2">Dos</option>
-                            <option value="3">Tres</option>
-                        </select>
-                        <textarea cols="30" rows="10"></textarea>
-                    </fieldset>
-                    <fieldset>
-                        <legend>Botones</legend>
-
-                        <button>Botón</button>
-                        <input type="button" value="Button">
-                        <input type="submit" value="Submit">
-                        <input type="reset" value="Reset">
-                    </fieldset>
-                </form>
-            </article>
-        </section>
-    </main>
-    <aside>
-        <ul>
-            <li><a href="#">Enlace externo 1</a></li>
-            <li><a href="#">Enlace externo 2</a></li>
-            <li><a href="#">Enlace externo 3</a></li>
-            <li><a href="#">Enlace externo 4</a></li>
-            <li><a href="#">Enlace externo 5</a></li>
-            <li><a href="#">Enlace externo 6</a></li>
-            <li><a href="#">Enlace externo 7</a></li>
-            <li><a href="#">Enlace externo 8</a></li>
-            <li><a href="#">Enlace externo 9</a></li>
-            <li><a href="#">Enlace externo 10</a></li>
-        </ul>
-    </aside>
-    <footer>
-        &copy;2022 Javier Lete
-    </footer>
+                            <button>Botón</button>
+                            <input type="button" value="Button">
+                            <input type="submit" value="Submit">
+                            <input type="reset" value="Reset">
+                        </fieldset>
+                    </form>
+                </article>
+            </section>
+        </main>
+        <aside class="col-xl-2">
+            <ul>
+                <li><a href="#">Enlace externo 1</a></li>
+                <li><a href="#">Enlace externo 2</a></li>
+                <li><a href="#">Enlace externo 3</a></li>
+                <li><a href="#">Enlace externo 4</a></li>
+                <li><a href="#">Enlace externo 5</a></li>
+                <li><a href="#">Enlace externo 6</a></li>
+                <li><a href="#">Enlace externo 7</a></li>
+                <li><a href="#">Enlace externo 8</a></li>
+                <li><a href="#">Enlace externo 9</a></li>
+                <li><a href="#">Enlace externo 10</a></li>
+            </ul>
+        </aside>
+        <footer>
+            &copy;2022 Javier Lete
+        </footer>
+    </div>
 </body>
 
 </html>

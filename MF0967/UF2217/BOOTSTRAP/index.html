@@ -192,19 +192,19 @@
                     <h3>Formularios</h3>
 
                     <form action="#">
-                        <fieldset>
+                        <fieldset class="row">
                             <legend>Login</legend>
 
-                            <div>
-                                <label for="correo">Correo electrónico</label>
-                                <input type="email" id="correo">
+                            <div class="col-md form-floating mb-3">
+                                <input class="form-control" type="email" id="correo" placeholder="Correo electrónico">
+                                <label class="form-label" for="correo">Correo electrónico</label>
                             </div>
-                            <div>
-                                <label for="contrasena">Contraseña</label>
-                                <input type="password" id="contrasena">
+                            <div class="col-md form-floating mb-3">
+                                <input class="form-control" type="password" id="contrasena" placeholder="Contraseña">
+                                <label class="form-label" for="contrasena">Contraseña</label>
                             </div>
-                            <div>
-                                <button>Aceptar</button>
+                            <div class="col-12 mb-3">
+                                <button class="btn btn-primary">Aceptar</button>
                             </div>
                         </fieldset>
                     </form>
@@ -213,56 +213,86 @@
                         <fieldset>
                             <legend>Buscar por Google</legend>
 
-                            <input type="text" name="q" placeholder="Texto a buscar">
+                            <input class="mb-3 form-control" type="text" name="q" placeholder="Texto a buscar">
 
-                            <button>Aceptar</button>
+                            <button class="mb-3 btn btn-primary">Aceptar</button>
                         </fieldset>
                     </form>
 
-                    <form action="#">
-                        <fieldset>
-                            <legend>Inputs</legend>
+                    <form action="#" class="needs-validation" novalidate>
+                        <fieldset class="row g-2">
+                            <legend class="col-12">Inputs</legend>
 
-                            <input type="text">
-                            <input type="checkbox">
-                            <input type="radio" name="radios">
-                            <input type="radio" name="radios">
+                            <input class="col-md form-control" type="text">
+                            <input class="form-check-input" type="checkbox">
+                            <input class="form-check-input" type="radio" name="radios">
+                            <input class="form-check-input" type="radio" name="radios">
+                            <input class="col-md form-control" type="email">
+                            <input class="col-md form-control" type="url">
+                            <input class="col-md form-control" type="tel">
+                            <div class="w-100"></div>
+                            <div class="col-md">
+                                <input class="form-control" type="number" step=".01" min="0" required>
+                                <div class="valid-feedback">
+                                    Precio correcto
+                                </div>
+                                <div class="invalid-feedback">
+                                    El precio es requerido y debe ser mayor o igual que 0
+                                </div>
+                            </div>
+                            <input class="col-md form-control" type="date">
+                            <input class="col-md form-control" type="datetime-local">
+                            <input class="col-md form-control" type="time">
+                            <input class="col-md form-range" type="range">
 
-                            <input type="email">
-                            <input type="url">
-                            <input type="tel">
-                            <input type="number" step=".01" min="0" required>
-                            <input type="date">
-                            <input type="datetime-local">
-                            <input type="time">
-                            <input type="range">
-
-                            <button>Aceptar</button>
+                            <button class="btn btn-primary">Aceptar</button>
                         </fieldset>
-                        <fieldset>
+                        <fieldset class="row">
                             <legend>Otros</legend>
 
-                            <select>
+                            <select class="col-12 mb-3 form-select">
                                 <option value="1">Uno</option>
                                 <option value="2">Dos</option>
                                 <option value="3">Tres</option>
                             </select>
-                            <select multiple>
+                            <select multiple class="col-md mb-3 form-select">
                                 <option value="1">Uno</option>
                                 <option value="2">Dos</option>
                                 <option value="3">Tres</option>
                             </select>
-                            <textarea cols="30" rows="10"></textarea>
+                            <textarea class="col-md mb-3 form-control" cols="30" rows="10"></textarea>
                         </fieldset>
                         <fieldset>
                             <legend>Botones</legend>
 
-                            <button>Botón</button>
-                            <input type="button" value="Button">
-                            <input type="submit" value="Submit">
-                            <input type="reset" value="Reset">
+                            <button class="mb-3 btn btn-primary">Botón</button>
+                            <input class="mb-3 btn btn-warning" type="button" value="Button">
+                            <input class="mb-3 btn btn-primary" type="submit" value="Submit">
+                            <input class="mb-3 btn btn-danger" type="reset" value="Reset">
                         </fieldset>
                     </form>
+
+                    <script>
+                        // Example starter JavaScript for disabling form submissions if there are invalid fields
+                        (() => {
+                            'use strict'
+
+                            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                            const forms = document.querySelectorAll('.needs-validation')
+
+                            // Loop over them and prevent submission
+                            Array.from(forms).forEach(form => {
+                                form.addEventListener('submit', event => {
+                                    if (!form.checkValidity()) {
+                                        event.preventDefault()
+                                        event.stopPropagation()
+                                    }
+
+                                    form.classList.add('was-validated')
+                                }, false)
+                            })
+                        })()
+                    </script>
                 </article>
             </section>
         </main>

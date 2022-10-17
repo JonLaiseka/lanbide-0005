@@ -7,23 +7,40 @@
     <title>Página de ejemplo</title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body class="container">
     <!-- header+nav+main+aside+footer -->
     <div class="row">
-        <header>
+        <header class="d-none">
             <h1>Ejemplos de HTML</h1>
         </header>
-        <nav>
-            <!-- ul>li*5>a[href="#"]{Enlace $} -->
-            <ul>
-                <li><a href="#">Enlace 1</a></li>
-                <li><a href="#">Enlace 2</a></li>
-                <li><a href="#">Enlace 3</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Ejemplos de HTML</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#">Enlace 1</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Enlace 2</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Enlace 3</a></li>
+                    </ul>
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="navbar-text">Javier Lete</li>
+                        <li class="nav-item"><a href="#" class="nav-link">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
+        
         <main class="col-xl">
             <!-- section#html>h2>{HTML} -->
             <section id="html" class="row">
@@ -265,10 +282,12 @@
                         <fieldset>
                             <legend>Botones</legend>
 
-                            <button class="mb-3 btn btn-primary">Botón</button>
-                            <input class="mb-3 btn btn-warning" type="button" value="Button">
-                            <input class="mb-3 btn btn-primary" type="submit" value="Submit">
-                            <input class="mb-3 btn btn-danger" type="reset" value="Reset">
+                            <div class="btn-group" role="group">
+                                <button class="mb-3 btn btn-primary">Botón</button>
+                                <input class="mb-3 btn btn-warning" type="button" value="Button">
+                                <input class="mb-3 btn btn-primary" type="submit" value="Submit">
+                                <input class="mb-3 btn btn-danger" type="reset" value="Reset">
+                            </div>
                         </fieldset>
                     </form>
 

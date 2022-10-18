@@ -40,8 +40,166 @@
                 </div>
             </div>
         </nav>
-        
+
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            Ejemplo de alerta de Bootstrap
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Library</li>
+            </ol>
+        </nav>
+
         <main class="col-xl">
+            <section id="bootstrap">
+                <h2>Bootstrap</h2>
+
+                <article id="modales">
+                    <h3>Modales</h3>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop">
+                        Launch static backdrop modal
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Understood</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article id="cards">
+                    <h3>Cards</h3>
+
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xxl-5 g-4">
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="..." class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural
+                                        lead-in to additional content. This content is a little bit longer.</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">Last updated 3 mins ago</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="..." class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This card has supporting text below as a natural lead-in to
+                                        additional content.</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">Last updated 3 mins ago</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="..." class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural
+                                        lead-in to additional content. This card has even longer content than the first
+                                        to show that equal height action.</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">Last updated 3 mins ago</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="..." class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title placeholder-glow"></h5>
+                                    <p class="card-text placeholder-glow">
+                                        <span class="placeholder col-7"></span>
+                                        <span class="placeholder col-4"></span>
+                                        <span class="placeholder col-4"></span>
+                                        <span class="placeholder col-6"></span>
+                                        <span class="placeholder col-8"></span>
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted placeholder-glow">
+                                        <span class="placeholder col-8"></span>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </article>
+                <article id="tabs">
+                    <h3>Tabs</h3>
+
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                                data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                                aria-selected="true">Home</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                                data-bs-target="#profile-tab-pane" type="button" role="tab"
+                                aria-controls="profile-tab-pane" aria-selected="false">Profile</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
+                                data-bs-target="#contact-tab-pane" type="button" role="tab"
+                                aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="disabled-tab" data-bs-toggle="tab"
+                                data-bs-target="#disabled-tab-pane" type="button" role="tab"
+                                aria-controls="disabled-tab-pane" aria-selected="false" disabled>Disabled</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
+                            aria-labelledby="home-tab" tabindex="0">Lorem, ipsum dolor sit amet consectetur adipisicing
+                            elit. Aut quia expedita totam error ad, iste architecto rerum quaerat ipsum molestias! Nemo
+                            modi sunt repudiandae quaerat iusto culpa! Excepturi, perspiciatis explicabo?</div>
+                        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                            tabindex="0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem enim ipsam
+                            ipsa corrupti possimus ducimus sunt modi, molestiae accusamus adipisci ut hic cumque debitis
+                            maxime in expedita impedit consectetur dignissimos!</div>
+                        <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
+                            tabindex="0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, vero
+                            pariatur tempore ad at voluptatem? Facilis in, saepe iste qui assumenda numquam laudantium
+                            nulla eos ut asperiores enim tempora accusantium!</div>
+                        <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab"
+                            tabindex="0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid quos cum enim
+                            possimus eos, amet obcaecati eius temporibus sit voluptatibus, perferendis consequuntur
+                            voluptas delectus rerum numquam? Impedit aperiam consectetur fugiat!</div>
+                    </div>
+                </article>
+            </section>
             <!-- section#html>h2>{HTML} -->
             <section id="html" class="row">
                 <h2><i class="fa-brands fa-html5"></i> HTML</h2>
@@ -316,17 +474,19 @@
             </section>
         </main>
         <aside class="col-xl-2">
-            <ul>
-                <li><a href="#">Enlace externo 1</a></li>
-                <li><a href="#">Enlace externo 2</a></li>
-                <li><a href="#">Enlace externo 3</a></li>
-                <li><a href="#">Enlace externo 4</a></li>
-                <li><a href="#">Enlace externo 5</a></li>
-                <li><a href="#">Enlace externo 6</a></li>
-                <li><a href="#">Enlace externo 7</a></li>
-                <li><a href="#">Enlace externo 8</a></li>
-                <li><a href="#">Enlace externo 9</a></li>
-                <li><a href="#">Enlace externo 10</a></li>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Disabled</a>
+                </li>
             </ul>
         </aside>
         <footer>

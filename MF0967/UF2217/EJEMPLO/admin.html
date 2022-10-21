@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+
+    <style>
+        /* TODO Buscar solución de Bootstrap */
+        .card-title {
+            height: 3rem;
+        }
+    </style>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Ejemplo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Principal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Informática</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Electrodomésticos</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="navbar-text">
+                        Javier Lete
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.html">Administración</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        Bienvenido a esta página
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <nav class="container-fluid text-bg-light py-3 mb-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="#">Principal</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Informática</li>
+        </ol>
+    </nav>
+    <main class="mb-xl-3">
+        <table class="table table-hover table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Imágen</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- tr*5>(th>{$}^td>{Nombre$}^td>{$$$.$$€}^td>{imagen$.jpg}^td>a.btn.btn-sm.btn-primary[href=producto.html]>{Editar}^{ }a.btn.btn-sm.btn-danger[href=#]>{Borrar}) -->
+                <tr>
+                    <th>1</th>
+                    <td>Nombre1</td>
+                    <td>001.01€</td>
+                    <td>imagen1.jpg</td>
+                    <td><a href="producto.html" class="btn btn-sm btn-primary">Editar</a> <a href="#" class="btn btn-sm btn-danger">Borrar</a></td>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <td>Nombre2</td>
+                    <td>002.02€</td>
+                    <td>imagen2.jpg</td>
+                    <td><a href="producto.html" class="btn btn-sm btn-primary">Editar</a> <a href="#" class="btn btn-sm btn-danger">Borrar</a></td>
+                </tr>
+                <tr>
+                    <th>3</th>
+                    <td>Nombre3</td>
+                    <td>003.03€</td>
+                    <td>imagen3.jpg</td>
+                    <td><a href="producto.html" class="btn btn-sm btn-primary">Editar</a> <a href="#" class="btn btn-sm btn-danger">Borrar</a></td>
+                </tr>
+                <tr>
+                    <th>4</th>
+                    <td>Nombre4</td>
+                    <td>004.04€</td>
+                    <td>imagen4.jpg</td>
+                    <td><a href="producto.html" class="btn btn-sm btn-primary">Editar</a> <a href="#" class="btn btn-sm btn-danger">Borrar</a></td>
+                </tr>
+                <tr>
+                    <th>5</th>
+                    <td>Nombre5</td>
+                    <td>005.05€</td>
+                    <td>imagen5.jpg</td>
+                    <td><a href="producto.html" class="btn btn-sm btn-primary">Editar</a> <a href="#" class="btn btn-sm btn-danger">Borrar</a></td>
+                </tr>
+            </tbody>
+            <tfoot class="table-dark">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="producto.html">Añadir</a>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </main>
+    <footer class="p-3 bg-dark text-light d-flex">
+        <div>&copy; Javier Lete</div>
+        <div class="ms-auto">
+            <i class="bi bi-youtube"></i>
+            <i class="bi bi-facebook"></i>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -9,8 +9,13 @@ import java.io.IOException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
+	private static final String LOGIN_JSP = "/WEB-INF/vistas/login.jsp";
 	private static final long serialVersionUID = 1L;
     
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher(LOGIN_JSP).forward(request, response);
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
@@ -19,11 +24,11 @@ public class LoginServlet extends HttpServlet {
 		
 		if(validarUsuario(user, pass)) {
 			request.getSession().setAttribute("usuario", user);
-			response.sendRedirect("principal.jsp");
+			response.sendRedirect("principal");
 		} else {
 			//response.sendRedirect("login.jsp");
 			request.setAttribute("error", "El usuario o la contraseña son incorrectos");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			request.getRequestDispatcher(LOGIN_JSP).forward(request, response);
 		}
 	}
 

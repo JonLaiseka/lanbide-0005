@@ -19,8 +19,8 @@
 				<td>
 					<fmt:formatNumber type="currency" value="${p.precio}"></fmt:formatNumber>
 				</td>
-				<td><a class="btn btn-sm btn-primary" href="#">Editar</a> <a
-					class="btn btn-sm btn-danger" href="#">Borrar</a></td>
+				<td><a class="btn btn-sm btn-primary" href="admin/producto?id=${p.id}">Editar</a> <a
+					class="btn btn-sm btn-danger" href="admin/producto/borrar?id=${p.id}">Borrar</a></td>
 			</tr>
 		</c:forEach>
 	</tbody>
@@ -29,7 +29,7 @@
 			<td></td>
 			<td></td>
 			<td></td>
-			<td><a class="btn btn-sm btn-primary" href="#">Añadir</a></td>
+			<td><a class="btn btn-sm btn-primary" href="admin/producto">Añadir</a></td>
 		</tr>
 	</tfoot>
 </table>

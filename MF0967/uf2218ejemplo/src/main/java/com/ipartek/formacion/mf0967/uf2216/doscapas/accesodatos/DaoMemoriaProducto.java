@@ -12,7 +12,7 @@ public class DaoMemoriaProducto implements Dao<Producto> {
 
 	// SINGLETON
 	private DaoMemoriaProducto() {
-		for (Long l = 1L; l <= 10; l++) {
+		for (Long l = 1L; l <= 5; l++) {
 			productos.put(l, new Producto(l, "Nombre" + l, LocalDate.now().plusYears(l),
 					new BigDecimal(new Random().nextInt(1, 100)), l.intValue()));
 		}

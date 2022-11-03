@@ -2,14 +2,27 @@ package com.ipartek.formacion.mf0967.uf2216.doscapas.entidades;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.Objects;
+import java.util.TreeMap;
 
+// Vamos a utilizarlo como Modelo en lugar de Entidad 
 public class Producto {
 	private Long id;
 	private String nombre;
 	private LocalDate caducidad;
 	private BigDecimal precio;
 	private Integer cantidad;
+
+	private Map<String, String> errores = new TreeMap<>();
+
+	public Producto(String id, String nombre, String caducidad, String precio, String cantidad) {
+		setId(id);
+		setNombre(nombre);
+		setCaducidad(caducidad);
+		setPrecio(precio);
+		setCantidad(cantidad);
+	}
 
 	public Producto(Long id, String nombre, LocalDate caducidad, BigDecimal precio, Integer cantidad) {
 		setId(id);
@@ -18,16 +31,33 @@ public class Producto {
 		setPrecio(precio);
 		setCantidad(cantidad);
 	}
-	
-	public Producto() {}
+
+	public Producto() {
+	}
 
 	public Long getId() {
 		return id;
 	}
 
+	private void setId(String id) {
+		if (id == null) {
+			setId((Long) null);
+		} else {
+			if (id.trim().length() == 0) {
+				setId((Long) null);
+			} else {
+				try {
+					setId(Long.parseLong(id));
+				} catch (NumberFormatException e) {
+					errores.put("id", "El id debe ser numérico");
+				}
+			}
+		}
+	}
+
 	public void setId(Long id) {
 		if (id != null && id <= 0L) {
-			throw new EntidadesException("El id debe ser mayor o igual que uno");
+			errores.put("id", "El id debe ser mayor o igual que uno");
 		}
 
 		this.id = id;
@@ -39,9 +69,9 @@ public class Producto {
 
 	public void setNombre(String nombre) {
 		if (nombre == null || nombre.trim().length() < 5) {
-			throw new EntidadesException("El producto tiene que tener un nombre de 5 caracteres o más");
+			errores.put("nombre", "El producto tiene que tener un nombre de 5 caracteres o más");
 		}
-		
+
 		this.nombre = nombre.trim();
 	}
 
@@ -49,11 +79,19 @@ public class Producto {
 		return caducidad;
 	}
 
-	public void setCaducidad(LocalDate caducidad) {
-		if(caducidad != null && caducidad.isBefore(LocalDate.now())) {
-			throw new EntidadesException("No se pueden crear productos caducados");
+	private void setCaducidad(String caducidad) {
+		try {
+			setCaducidad(LocalDate.parse(caducidad));
+		} catch (Exception e) {
+			errores.put("caducidad", "La caducidad debe ser una fecha válida");
 		}
-		
+	}
+
+	public void setCaducidad(LocalDate caducidad) {
+		if (caducidad != null && caducidad.isBefore(LocalDate.now())) {
+			errores.put("caducidad", "No se pueden crear productos caducados");
+		}
+
 		this.caducidad = caducidad;
 	}
 
@@ -61,11 +99,19 @@ public class Producto {
 		return precio;
 	}
 
-	public void setPrecio(BigDecimal precio) {
-		if(precio == null || precio.compareTo(new BigDecimal("0.01")) < 0) {
-			throw new EntidadesException("El precio debe ser 0.01 o más");
+	private void setPrecio(String precio) {
+		try {
+			setPrecio(new BigDecimal(precio));
+		} catch (Exception e) {
+			errores.put("precio", "El precio debe ser un número con decimales");
 		}
-		
+	}
+
+	public void setPrecio(BigDecimal precio) {
+		if (precio == null || precio.compareTo(new BigDecimal("0.01")) < 0) {
+			errores.put("precio", "El precio debe ser 0.01 o más");
+		}
+
 		this.precio = precio;
 	}
 
@@ -73,12 +119,24 @@ public class Producto {
 		return cantidad;
 	}
 
-	public void setCantidad(Integer cantidad) {
-		if(cantidad == null || cantidad < 0) {
-			throw new EntidadesException("La cantidad debe ser 0 o más");
+	private void setCantidad(String cantidad) {
+		try {
+			setCantidad(Integer.parseInt(cantidad));
+		} catch (NumberFormatException e) {
+			errores.put("cantidad", "La cantidad debe ser numérica y es obligatoria");
 		}
-		
+	}
+
+	public void setCantidad(Integer cantidad) {
+		if (cantidad == null || cantidad < 0) {
+			errores.put("cantidad", "La cantidad debe ser 0 o más");
+		}
+
 		this.cantidad = cantidad;
+	}
+
+	public Map<String, String> getErrores() {
+		return errores;
 	}
 
 	@Override

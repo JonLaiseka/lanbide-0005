@@ -45,7 +45,14 @@
 					<li class="nav-item"><a class="nav-link" href="#">Principal</a></li>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link" href="admin/index">Administración</a></li>
+					<c:if test="${usuario != null}">
+						<li class="nav-item"><a class="nav-link" href="admin/index">Administración</a></li>
+						<li class="navbar-text">${usuario}</li>
+						<li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
+					</c:if>
+					<c:if test="${usuario == null}">
+						<li class="nav-item"><a class="nav-link" href="login">Login</a></li>
+					</c:if>
 				</ul>
 			</div>
 		</div>

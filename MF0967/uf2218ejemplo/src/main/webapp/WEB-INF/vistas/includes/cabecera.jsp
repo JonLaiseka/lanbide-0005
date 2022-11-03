@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<fmt:setLocale value="es-ES"/>
+<fmt:setLocale value="es-ES" />
 
 <!DOCTYPE html>
 <html class="h-100">
@@ -19,6 +19,7 @@
 
 <script src="js/jquery-3.5.1.js"></script>
 <script src="js/jquery.dataTables.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/dataTables.bootstrap5.min.js"></script>
 
 <script>
@@ -30,7 +31,7 @@
 </head>
 <body class="d-flex flex-column h-100">
 	<nav
-		class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top mb-4">
+		class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">UF2218 Ejemplo</a>
 			<button class="navbar-toggler" type="button"
@@ -49,5 +50,13 @@
 			</div>
 		</div>
 	</nav>
+	<c:if test="${alertaMensaje != null}">
+		<div class="alert alert-${alertaNivel} alert-dismissible fade show"
+			role="alert">
+			${alertaMensaje}
+			<button type="button" class="btn-close" data-bs-dismiss="alert"
+				aria-label="Close"></button>
+		</div>
+	</c:if>
 
-	<div class="container-fluid">
+	<div class="container-fluid mt-4">

@@ -29,6 +29,8 @@ public class ProductoServlet extends HttpServlet {
 		Producto producto = new Producto(id, nombre, caducidad, precio, cantidad);
 
 		if (producto.getErrores().size() > 0) {
+			request.setAttribute("alertaNivel", "danger");
+			request.setAttribute("alertaMensaje", "Hay errores en el formulario");
 			request.setAttribute("producto", producto);
 			request.getRequestDispatcher("/WEB-INF/vistas/admin/producto.jsp").forward(request, response);
 		} else {

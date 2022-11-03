@@ -44,7 +44,7 @@
 					<li class="nav-item"><a class="nav-link" href="#">Principal</a></li>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link" href="#">Administración</a></li>
+					<li class="nav-item"><a class="nav-link" href="admin/index">Administración</a></li>
 				</ul>
 			</div>
 		</div>

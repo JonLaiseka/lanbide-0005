@@ -1,9 +1,9 @@
 package com.ipartek.formacion.mf0967.uf2218.controladores.admin;
 
+import static com.ipartek.formacion.mf0967.uf2218.controladores.Globales.*;
+
 import java.io.IOException;
 
-import com.ipartek.formacion.mf0967.uf2216.doscapas.accesodatos.Dao;
-import com.ipartek.formacion.mf0967.uf2216.doscapas.accesodatos.DaoMemoriaProducto;
 import com.ipartek.formacion.mf0967.uf2216.doscapas.entidades.Producto;
 
 import jakarta.servlet.ServletException;
@@ -16,8 +16,6 @@ import jakarta.servlet.http.HttpServletResponse;
 public class ProductoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final Dao<Producto> DAO = DaoMemoriaProducto.getInstancia();
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
@@ -37,9 +35,9 @@ public class ProductoServlet extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/vistas/admin/producto.jsp").forward(request, response);
 		} else {
 			if (producto.getId() == null) {
-				DAO.insertar(producto);
+				dao.insertar(producto);
 			} else {
-				DAO.modificar(producto);
+				dao.modificar(producto);
 			}
 			
 			response.sendRedirect(request.getContextPath() + "/admin/index");
@@ -52,7 +50,7 @@ public class ProductoServlet extends HttpServlet {
 		String id = request.getParameter("id");
 
 		if (id != null) {
-			Producto producto = DAO.obtenerPorId(Long.parseLong(id));
+			Producto producto = dao.obtenerPorId(Long.parseLong(id));
 
 			request.setAttribute("producto", producto);
 		}

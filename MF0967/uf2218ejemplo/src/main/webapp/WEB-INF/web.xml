@@ -12,4 +12,7 @@
     <filter-name>LoginFilter</filter-name>
     <url-pattern>/LoginFilter</url-pattern>
   </filter-mapping>
+  <listener>
+    <listener-class>com.ipartek.formacion.mf0967.uf2218.listeners.InicioServidorListener</listener-class>
+  </listener>
 </web-app>

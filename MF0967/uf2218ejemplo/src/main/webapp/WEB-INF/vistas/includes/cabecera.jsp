@@ -1,24 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<fmt:setLocale value="es-ES"/>
+
 <!DOCTYPE html>
 <html class="h-100">
 <head>
 
-<base href="${pageContext.request.contextPath}/"/>
+<base href="${pageContext.request.contextPath}/" />
 
 <meta charset="UTF-8">
 <title>UF2218 Ejemplo</title>
 
-<link rel="stylesheet"
-	href="css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/dataTables.bootstrap5.min.css">
 
 <script src="js/jquery-3.5.1.js"></script>
-<script
-	src="js/jquery.dataTables.min.js"></script>
-<script
-	src="js/dataTables.bootstrap5.min.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/dataTables.bootstrap5.min.js"></script>
 
 <script>
 	$(document).ready(function() {
@@ -28,7 +29,8 @@
 
 </head>
 <body class="d-flex flex-column h-100">
-	<nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top mb-4">
+	<nav
+		class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top mb-4">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">UF2218 Ejemplo</a>
 			<button class="navbar-toggler" type="button"
@@ -47,5 +49,5 @@
 			</div>
 		</div>
 	</nav>
-	
+
 	<div class="container-fluid">

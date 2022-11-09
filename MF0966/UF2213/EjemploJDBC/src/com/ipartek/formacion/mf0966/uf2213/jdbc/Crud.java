@@ -3,23 +3,23 @@ package com.ipartek.formacion.mf0966.uf2213.jdbc;
 import java.sql.*;
 
 public class Crud {
-	private static final String url = "jdbc:mysql://localhost:3306/mf0966";
-	private static final String user = "root";
-	private static final String password = "admin";
+	private static final String URL = "jdbc:mysql://localhost:3306/mf0966";
+	private static final String USER = "root";
+	private static final String PASSWORD = "admin";
 
-	private static final String sql = "SELECT * FROM usuarios";
-	private static final String sqlId = "SELECT * FROM usuarios WHERE id = ?";
-	private static final String sqlInsert = "INSERT INTO usuarios (email, password) VALUES (?, ?)";
-	private static final String sqlUpdate = "UPDATE usuarios SET email=?,password=? WHERE id=?";
-	private static final String sqlDelete = "DELETE FROM usuarios WHERE id=?";
+	private static final String SQL_SELECT = "SELECT * FROM usuarios";
+	private static final String SQL_SELECT_ID = "SELECT * FROM usuarios WHERE id = ?";
+	private static final String SQL_INSERT = "INSERT INTO usuarios (email, password) VALUES (?, ?)";
+	private static final String SQL_UPDATE = "UPDATE usuarios SET email=?,password=? WHERE id=?";
+	private static final String SQL_DELETE = "DELETE FROM usuarios WHERE id=?";
 
-	private static final String driver = "com.mysql.cj.jdbc.Driver";
+	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
 	public static void main(String[] args) throws SQLException {
 
 		select();
-		Connection con = DriverManager.getConnection(url, user, password);
-		PreparedStatement pst = con.prepareStatement(sqlId);
+		Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+		PreparedStatement pst = con.prepareStatement(SQL_SELECT_ID);
 		ResultSet rs;
 
 		Long id = 1L;
@@ -34,7 +34,7 @@ public class Crud {
 			System.out.printf("%s: %s, %s\n", rs.getLong("id"), rs.getString("email"), rs.getString("password"));
 		}
 
-		pst = con.prepareStatement(sqlInsert);
+		pst = con.prepareStatement(SQL_INSERT);
 
 		String email = "yepa@email.net" + Math.random();
 		String pass = "lalaralalaaaa\\'); DROP TABLE usuarios; -- ";
@@ -46,7 +46,7 @@ public class Crud {
 
 		System.out.println(numRegMod);
 
-		pst = con.prepareStatement(sqlUpdate);
+		pst = con.prepareStatement(SQL_UPDATE);
 
 		id = 8L;
 		email = "prueba@email.net";
@@ -60,7 +60,7 @@ public class Crud {
 
 		System.out.println(numRegMod);
 
-		pst = con.prepareStatement(sqlDelete);
+		pst = con.prepareStatement(SQL_DELETE);
 
 		id = 10L;
 
@@ -73,10 +73,10 @@ public class Crud {
 
 	private static void select() {
 		try {
-			Class.forName(driver);
+			Class.forName(DRIVER);
 	
-			try (Connection con = DriverManager.getConnection(url, user, password);
-					PreparedStatement pst = con.prepareStatement(sql);
+			try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+					PreparedStatement pst = con.prepareStatement(SQL_SELECT);
 					ResultSet rs = pst.executeQuery()) {
 				while (rs.next()) {
 					System.out.printf("%s: %s, %s\n", rs.getLong("id"), rs.getString("email"), rs.getString("password"));

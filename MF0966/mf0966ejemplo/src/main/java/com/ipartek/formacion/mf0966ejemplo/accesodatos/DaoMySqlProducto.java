@@ -10,7 +10,7 @@ import com.ipartek.formacion.mf0966ejemplo.modelos.Categoria;
 import com.ipartek.formacion.mf0966ejemplo.modelos.Producto;
 
 public class DaoMySqlProducto implements Dao<Producto> {
-	private static final String URL = "jdbc:mysql://localhost:3306/mf0966ejemplo?useUnicode=true&characterEncoding=UTF-8";
+	private static final String URL = "jdbc:mysql://localhost:3306/mf0966ejemplo";
 	private static final String USER = "root";
 	private static final String PASSWORD = "admin";
 

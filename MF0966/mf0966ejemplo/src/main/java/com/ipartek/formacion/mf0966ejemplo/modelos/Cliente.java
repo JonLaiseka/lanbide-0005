@@ -1,5 +1,8 @@
 package com.ipartek.formacion.mf0966ejemplo.modelos;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,17 +10,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Usuario {
+public class Cliente {
 	private Long id;
+	private String nombre;
+	private String nif;
 	private String email;
-	private String password;
-	
-	private Cliente cliente;
 
-	public Usuario(Long id, String email, String password) {
-		super();
-		this.id = id;
-		this.email = email;
-		this.password = password;
-	}
+	private final Set<Factura> facturas = new HashSet<>();
 }

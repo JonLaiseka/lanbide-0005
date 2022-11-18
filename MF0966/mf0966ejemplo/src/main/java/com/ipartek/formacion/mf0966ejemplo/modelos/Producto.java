@@ -1,6 +1,10 @@
 package com.ipartek.formacion.mf0966ejemplo.modelos;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.ipartek.formacion.mf0966ejemplo.modelos.Factura.Linea;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +21,8 @@ public class Producto {
 	private String descripcion;
 	
 	private Categoria categoria;
+	
+	private final Set<Linea> lineas = new HashSet<>();
 	
 	public Producto(String id, String nombre, String precio, String descripcion, String categoria) {
 		setId(id);

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
-<form action="admin/producto" method="post">
+<form action="admin/producto" method="post" enctype="multipart/form-data">
 	<div class="row mb-3">
 		<label for="id" class="col-sm-2 col-form-label">Id</label>
 		<div class="col-sm-10">
@@ -40,6 +40,13 @@
 		<label for="descripcion" class="col-sm-2 col-form-label">Descripcion</label>
 		<div class="col-sm-10">
 			<textarea class="form-control" id="descripcion" name="descripcion">${producto.descripcion}</textarea>
+		</div>
+	</div>
+	
+	<div class="row mb-3">
+		<label for="imagen" class="col-sm-2 col-form-label">Imagen</label>
+		<div class="col-sm-10">
+			<input type="file" class="form-control" id="imagen" name="imagen">
 		</div>
 	</div>
 

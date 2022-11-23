@@ -6,6 +6,7 @@
 	<thead class="table-dark">
 		<tr>
 			<th class="text-end">Id</th>
+			<th>Imagen</th>
 			<th>Nombre</th>
 			<th class="text-end">Precio</th>
 			<th>Categoría</th>
@@ -16,6 +17,7 @@
 		<c:forEach items="${productos}" var="p">
 			<tr>
 				<th class="text-end">${p.id}</th>
+				<td><img src="imgs/${p.id}.jpg" alt="${p.nombre}"></td>
 				<td>${p.nombre}</td>
 				<td class="text-end"><fmt:formatNumber type="currency" value="${p.precio}"/></td>
 				<td>${p.categoria.nombre}</td>
@@ -28,6 +30,7 @@
 	</tbody>
 	<tfoot class="table-dark">
 		<tr>
+			<td></td>
 			<td></td>
 			<td></td>
 			<td></td>

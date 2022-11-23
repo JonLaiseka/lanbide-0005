@@ -11,7 +11,8 @@ import com.ipartek.formacion.mf0966ejemplo.modelos.Producto;
 
 public class DaoMySqlProducto implements Dao<Producto> {
 
-	private static final String SQL_SELECT = "SELECT p.id,p.nombre,p.precio,p.descripcion,p.categorias_id FROM productos p";
+	//private static final String SQL_SELECT = "SELECT p.id,p.nombre,p.precio,p.descripcion,p.categorias_id FROM productos p";
+	private static final String SQL_SELECT = "SELECT p.id,p.nombre,p.precio,p.descripcion,c.id,c.nombre,c.descripcion FROM productos p JOIN categorias c ON p.categorias_id = c.id";
 	private static final String SQL_SELECT_ID = "SELECT p.id,p.nombre,p.precio,p.descripcion,c.id,c.nombre,c.descripcion FROM productos p JOIN categorias c ON p.categorias_id = c.id WHERE p.id = ?";
 	private static final String SQL_INSERT = "INSERT INTO productos (nombre,precio,descripcion,categorias_id) VALUES (?,?,?,?)";
 	private static final String SQL_UPDATE = "UPDATE productos SET nombre=?,precio=?,descripcion=?,categorias_id=? WHERE id = ?";
@@ -38,7 +39,7 @@ public class DaoMySqlProducto implements Dao<Producto> {
 			List<Producto> productos = new ArrayList<>();
 
 			while (rs.next()) {
-				categoria = new Categoria(rs.getLong("p.categorias_id"), null, null);
+				categoria = new Categoria(rs.getLong("c.id"), rs.getString("c.nombre"), rs.getString("c.descripcion"));
 				producto = new Producto(rs.getLong("p.id"), rs.getString("p.nombre"), rs.getBigDecimal("p.precio"),
 						rs.getString("p.descripcion"), categoria);
 

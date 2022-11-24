@@ -48,9 +48,11 @@
 					<li class="nav-item"><a class="nav-link" href="#">Principal</a></li>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0">
+					<c:if test="${sessionScope.usuario.rol.nombre == 'ADMIN'}">
+						<li class="nav-item"><a class="nav-link" href="admin/productos">Administración</a></li>
+					</c:if>
 					<c:if test="${sessionScope.usuario != null}">
-						<li class="nav-item"><a class="nav-link" href="admin/index">Administración</a></li>
-						<li class="navbar-text">${sessionScope.usuario}</li>
+						<li class="navbar-text">${sessionScope.usuario.email} / ${sessionScope.usuario.rol.nombre}</li>
 						<li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
 					</c:if>
 					<c:if test="${sessionScope.usuario == null}">

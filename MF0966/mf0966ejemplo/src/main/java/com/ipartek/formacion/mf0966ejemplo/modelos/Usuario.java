@@ -12,6 +12,8 @@ public class Usuario {
 	private String email;
 	private String password;
 	
+	private Rol rol;
+	
 	private Cliente cliente;
 
 	public Usuario(Long id, String email, String password) {

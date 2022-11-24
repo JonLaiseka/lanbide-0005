@@ -11,7 +11,6 @@ import com.ipartek.formacion.mf0966ejemplo.modelos.Producto;
 
 public class DaoMySqlProducto implements Dao<Producto> {
 
-	//private static final String SQL_SELECT = "SELECT p.id,p.nombre,p.precio,p.descripcion,p.categorias_id FROM productos p";
 	private static final String SQL_SELECT = "SELECT p.id,p.nombre,p.precio,p.descripcion,c.id,c.nombre,c.descripcion FROM productos p JOIN categorias c ON p.categorias_id = c.id";
 	private static final String SQL_SELECT_ID = "SELECT p.id,p.nombre,p.precio,p.descripcion,c.id,c.nombre,c.descripcion FROM productos p JOIN categorias c ON p.categorias_id = c.id WHERE p.id = ?";
 	private static final String SQL_INSERT = "INSERT INTO productos (nombre,precio,descripcion,categorias_id) VALUES (?,?,?,?)";
@@ -91,7 +90,7 @@ public class DaoMySqlProducto implements Dao<Producto> {
 
 			return producto;
 		} catch (SQLException e) {
-			throw new AccesoDatosException("No se ha podido obtener el producto", e);
+			throw new AccesoDatosException("No se ha podido insertar el producto", e);
 		}
 
 	}
@@ -114,7 +113,7 @@ public class DaoMySqlProducto implements Dao<Producto> {
 
 			return producto;
 		} catch (SQLException e) {
-			throw new AccesoDatosException("No se ha podido obtener el producto", e);
+			throw new AccesoDatosException("No se ha podido modificar el producto", e);
 		}
 	}
 
@@ -130,7 +129,7 @@ public class DaoMySqlProducto implements Dao<Producto> {
 						"No se ha borrado nada, o se ha borrado más de un registro: " + numRegMod);
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("No se ha podido obtener el producto", e);
+			throw new AccesoDatosException("No se ha podido borrar el producto", e);
 		}
 	}
 

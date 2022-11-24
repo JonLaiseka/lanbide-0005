@@ -24,6 +24,7 @@ public class ProductoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String UPLOAD_DIRECTORY = "imgs";
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
@@ -39,6 +40,7 @@ public class ProductoController extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/vistas/admin/producto.jsp").forward(request, response);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// Recopilar datos de petición
@@ -59,7 +61,7 @@ public class ProductoController extends HttpServlet {
 		    fileName = part.getSubmittedFileName();
 			
 		    if(fileName != null) {
-				part.write(uploadPath + File.separator + id + ".jpg"); //fileName);
+				part.write(uploadPath + File.separator + id + ".jpg");
 			}
 		}
 		

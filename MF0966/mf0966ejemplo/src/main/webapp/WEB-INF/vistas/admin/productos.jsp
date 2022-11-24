@@ -3,20 +3,21 @@
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
 <table class="table table-striped table-hover table-bordered">
+	<caption>Productos</caption>
 	<thead class="table-dark">
 		<tr>
-			<th class="text-end">Id</th>
-			<th>Imagen</th>
-			<th>Nombre</th>
-			<th class="text-end">Precio</th>
-			<th>Categoría</th>
-			<th>Opciones</th>
+			<th scope="col" class="text-end">Id</th>
+			<th scope="col">Imagen</th>
+			<th scope="col">Nombre</th>
+			<th scope="col" class="text-end">Precio</th>
+			<th scope="col">Categoría</th>
+			<th scope="col">Opciones</th>
 		</tr>
 	</thead>
 	<tbody>
 		<c:forEach items="${productos}" var="p">
 			<tr>
-				<th class="text-end">${p.id}</th>
+				<th scope="row" class="text-end">${p.id}</th>
 				<td><img src="imgs/${p.id}.jpg" alt="${p.nombre}"></td>
 				<td>${p.nombre}</td>
 				<td class="text-end"><fmt:formatNumber type="currency" value="${p.precio}"/></td>

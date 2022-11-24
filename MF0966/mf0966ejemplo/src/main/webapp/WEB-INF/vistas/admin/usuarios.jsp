@@ -3,18 +3,19 @@
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
 <table class="table table-hovered table-striped table-bordered">
+	<caption>Usuarios</caption>
 	<thead class="table-dark">
 		<tr>
-			<th>Id</th>
-			<th>Email</th>
-			<th>Contraseña</th>
-			<th></th>
+			<th scope="col">Id</th>
+			<th scope="col">Email</th>
+			<th scope="col">Contraseña</th>
+			<th scope="col"></th>
 		</tr>
 	</thead>
 	<tbody>
 		<c:forEach items="${usuarios}" var="u">
 			<tr>
-				<th>${u.id}</th>
+				<th scope="row">${u.id}</th>
 				<td>${u.email}</td>
 				<td>${u.password}</td>
 

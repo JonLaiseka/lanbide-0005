@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.ipartek.formacion.mf0966ejemplo.modelos.Factura.Linea;
+import com.ipartek.formacion.mf0966ejemplo.modelos.Pedido.Linea;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

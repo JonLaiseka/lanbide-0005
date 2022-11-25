@@ -1,32 +1,21 @@
 package com.ipartek.formacion.mf0966ejemplo.modelos;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Factura {
+public class Factura extends Pedido {
 	private Long id;
 	private String codigo;
 	private LocalDate fecha;
 
 	private Cliente cliente;
 	private Empleado empleado;
-
-	private Set<Linea> lineas = new HashSet<>();
-
-	@Data
-	@AllArgsConstructor
-	@NoArgsConstructor
-	public static class Linea {
-		private Factura factura;
-		private Producto producto;
-		private Integer cantidad;
-	}
 }

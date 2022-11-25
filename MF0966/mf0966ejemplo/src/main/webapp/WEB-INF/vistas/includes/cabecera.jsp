@@ -12,7 +12,9 @@
 <base href="${pageContext.request.contextPath}/" />
 
 <meta charset="UTF-8">
-<title>UF2218 Ejemplo</title>
+<title>MF0966 Ejemplo</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css">
@@ -34,9 +36,10 @@
 
 </head>
 <body class="d-flex flex-column h-100">
+	<h1 class="d-none">MF0966 Ejemplo</h1>
 	<nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">UF2218 Ejemplo</a>
+			<a class="navbar-brand" href="#">MF0966 Ejemplo</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"

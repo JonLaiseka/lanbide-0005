@@ -1,5 +1,6 @@
 package com.ipartek.formacion.mf0966ejemplo.modelos;
 
+import java.math.BigDecimal;
 import java.util.TreeMap;
 
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ public class Pedido {
 	public Iterable<Linea> getLineas() {
 		return lineas.values();
 	}
-	
+
 	public void guardar(Integer cantidad, Producto producto) {
 		Long id = producto.getId();
 
@@ -47,9 +48,16 @@ public class Pedido {
 	public void eliminar(Producto producto) {
 		lineas.remove(producto.getId());
 	}
-	
+
 	public void vaciar() {
 		lineas.clear();
+	}
+
+	public BigDecimal getTotal() {
+		return lineas.values().stream()
+				.map(Linea::getTotal)
+				.filter(total -> total.compareTo(BigDecimal.ZERO) != 0)
+				.reduce(BigDecimal.ZERO, BigDecimal::add);
 	}
 
 	@Data
@@ -63,6 +71,10 @@ public class Pedido {
 		public Linea(Producto producto, Integer cantidad) {
 			this.producto = producto;
 			this.cantidad = cantidad;
+		}
+
+		public BigDecimal getTotal() {
+			return this.producto.getPrecio().multiply(new BigDecimal(cantidad));
 		}
 	}
 }

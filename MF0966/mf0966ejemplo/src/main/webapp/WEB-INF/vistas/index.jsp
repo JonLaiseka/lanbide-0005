@@ -19,7 +19,10 @@
 				</div>
 				<div class="card-footer d-flex">
 					<span class="btn"><fmt:formatNumber value="${p.precio}" type="currency"/></span>
-					<a class="btn btn-primary ms-auto stretched-link" href="carrito?id=${p.id}">Carrito</a>
+					<form action="carrito" method="post">
+						<input type="hidden" name="id" value="${p.id}"> 
+						<button class="btn btn-primary ms-auto stretched-link">Carrito</button>
+					</form>
 				</div>
 			</div>
 		</div>

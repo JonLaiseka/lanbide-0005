@@ -50,7 +50,7 @@ public class LoginController extends HttpServlet {
 	private Usuario validarUsuario(Usuario usuario) {
 		Usuario recibido = Globales.DAO_USUARIOS.obtenerPorEmail(usuario.getEmail());
 		
-		if(usuario.getPassword().equals(recibido.getPassword())) {
+		if(recibido != null && usuario.getPassword().equals(recibido.getPassword())) {
 			return recibido;
 		} else {
 			return null;

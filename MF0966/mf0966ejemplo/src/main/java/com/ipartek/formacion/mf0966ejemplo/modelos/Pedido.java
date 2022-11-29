@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class Pedido {
-	private TreeMap<Long, Linea> lineas = new TreeMap<>();
+	protected TreeMap<Long, Linea> lineas = new TreeMap<>();
 
 	public Iterable<Linea> getLineas() {
 		return lineas.values();

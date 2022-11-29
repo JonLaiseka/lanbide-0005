@@ -2,7 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
-<h2>Carrito</h2>
+<h2>Checkout</h2>
+
+<!-- TODO quitar el dato de código de factura -->
+
+<p>${factura.codigo}</p>
+
+<div>
+	<p>${factura.cliente.nif}</p>
+	<p>${factura.cliente.nombre}</p>
+	<p>${factura.cliente.email}</p>
+	<p>${factura.fecha}</p>
+</div>
 
 <div class="table-responsive">
 	<table class="table table-striped table-hover table-bordered">
@@ -17,7 +28,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${carrito.lineas}" var="l">
+			<c:forEach items="${factura.lineas}" var="l">
 				<tr>
 					<td><img height="25" src="imgs/${l.producto.id}.jpg"
 						alt="${l.producto.nombre}"></td>
@@ -37,7 +48,7 @@
 				<td></td>
 				<td></td>
 				<td class="text-end"><fmt:formatNumber type="currency"
-						value="${carrito.total}" /></td>
+						value="${factura.total}" /></td>
 			</tr>
 		</tfoot>
 	</table>

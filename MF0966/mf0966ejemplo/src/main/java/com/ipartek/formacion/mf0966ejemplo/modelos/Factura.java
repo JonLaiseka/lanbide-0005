@@ -18,4 +18,8 @@ public class Factura extends Pedido {
 
 	private Cliente cliente;
 	private Empleado empleado;
+
+	public Factura(Pedido pedido) {
+		this.lineas = pedido.lineas;
+	}
 }

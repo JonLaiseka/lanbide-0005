@@ -9,19 +9,27 @@
 	<c:forEach items="${productos}" var="p">
 		<div class="col">
 			<div class="card h-100">
-				<img src="imgs/${p.id}.jpg" class="card-img-top" alt="Imagen de ${p.nombre}">
+				<img src="imgs/${p.id}.jpg" class="card-img-top"
+					alt="Imagen de ${p.nombre}">
 				<div class="card-body">
 					<h3 class="card-title">${p.nombre}</h3>
-					<p class="card-text">
-						${p.categoria.nombre}
-					</p>
+					<p class="card-text lead">${p.categoria.nombre}</p>
 					<p class="card-text">${p.descripcion}</p>
 				</div>
-				<div class="card-footer d-flex">
-					<span class="btn"><fmt:formatNumber value="${p.precio}" type="currency"/></span>
+				<div class="card-footer">
+					<p class="text-center lead"><fmt:formatNumber value="${p.precio}"
+							type="currency" /></p>
 					<form action="carrito" method="post">
-						<input type="hidden" name="id" value="${p.id}"> 
-						<button class="btn btn-primary ms-auto stretched-link">Carrito</button>
+						<input type="hidden" name="id" value="${p.id}">
+						<div class="input-group mb-3 w-100">
+							<button class="btn btn-outline-danger menos" type="button"
+								id="menos-${p.id}">-</button>
+							<input type="text" class="form-control text-center border-top border-bottom border-dark lead"
+								name="cantidad" value="${carrito.lineasPorId[p.id] != null ? carrito.lineasPorId[p.id].cantidad : 0}">
+							<button class="btn btn-outline-success mas" type="button"
+								id="mas-${p.id}">+</button>
+						</div>
+						<button class="btn btn-primary ms-auto w-100">Carrito</button>
 					</form>
 				</div>
 			</div>

@@ -24,15 +24,8 @@
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/dataTables.bootstrap5.min.js"></script>
 
-<script>
-	$(document).ready(function() {
-		$('table').DataTable({
-			language : {
-				url : 'json/es-ES.json'
-			}
-		});
-	});
-</script>
+<script src="js/datatables.js"></script>
+<script src="js/cantidad.js"></script>
 
 </head>
 <body class="d-flex flex-column h-100">
@@ -48,7 +41,9 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link" href="#">Principal</a></li>
+					<li class="nav-item"><a class="nav-link" href="">Principal</a></li>
+					<li class="nav-item"><a class="nav-link" href="carrito">Carrito</a></li>
+					
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0">
 					<c:if test="${sessionScope.usuario.rol.nombre == 'ADMIN'}">

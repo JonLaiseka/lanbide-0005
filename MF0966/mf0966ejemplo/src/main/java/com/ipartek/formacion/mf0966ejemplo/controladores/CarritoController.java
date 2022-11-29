@@ -27,13 +27,24 @@ public class CarritoController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
+		String cantidadString = request.getParameter("cantidad");
 
 		if (id != null) {
+			Integer cantidad = 1;
+
+			if(cantidadString != null) {
+				try {
+					cantidad = Integer.parseInt(cantidadString);
+				} catch (NumberFormatException e) {
+					log.warning("Se ha recibido una cantidad " + cantidadString);
+				}
+			}
+			
 			Pedido pedido = (Pedido) request.getSession().getAttribute("carrito");
 
 			Producto producto = Globales.DAO_PRODUCTO.obtenerPorId(Long.parseLong(id));
 
-			pedido.guardar(producto);
+			pedido.guardar(cantidad, producto);
 
 			log.info(() -> "Se ha recibido el id " + id);
 			log.info(producto::toString);

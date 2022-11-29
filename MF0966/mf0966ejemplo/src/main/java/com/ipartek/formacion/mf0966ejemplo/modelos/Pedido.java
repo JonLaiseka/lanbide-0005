@@ -1,6 +1,7 @@
 package com.ipartek.formacion.mf0966ejemplo.modelos;
 
 import java.math.BigDecimal;
+import java.util.Map;
 import java.util.TreeMap;
 
 import lombok.AllArgsConstructor;
@@ -16,6 +17,10 @@ public class Pedido {
 
 	public Iterable<Linea> getLineas() {
 		return lineas.values();
+	}
+	
+	public Map<Long, Linea> getLineasPorId() {
+		return lineas;
 	}
 
 	public void guardar(Integer cantidad, Producto producto) {

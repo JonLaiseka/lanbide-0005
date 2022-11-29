@@ -43,4 +43,6 @@
 	</table>
 </div>
 
+<a class="btn btn-primary w-100" href="">Volver al listado de productos</a>
+
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>

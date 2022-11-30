@@ -18,25 +18,30 @@ public class Pedido {
 	public Iterable<Linea> getLineas() {
 		return lineas.values();
 	}
-	
+
 	public Map<Long, Linea> getLineasPorId() {
 		return lineas;
 	}
 
 	public void guardar(Integer cantidad, Producto producto) {
 		Long id = producto.getId();
+		boolean estaProductoEnCarrito = lineas.containsKey(id);
 
-		if (lineas.containsKey(id)) {
-			Linea linea = lineas.get(id);
+		if (cantidad <= 0 && !estaProductoEnCarrito) {
+			return;
+		}
 
-			if (cantidad > 0) {
-				linea.setCantidad(cantidad);
-			} else {
-				lineas.remove(id);
-			}
-
-		} else {
+		if (!estaProductoEnCarrito) {
 			lineas.put(producto.getId(), new Linea(producto, cantidad));
+			return;
+		}
+
+		Linea linea = lineas.get(id);
+
+		if (cantidad > 0) {
+			linea.setCantidad(cantidad);
+		} else {
+			lineas.remove(id);
 		}
 	}
 
@@ -59,9 +64,7 @@ public class Pedido {
 	}
 
 	public BigDecimal getTotal() {
-		return lineas.values().stream()
-				.map(Linea::getTotal)
-				.filter(total -> total.compareTo(BigDecimal.ZERO) != 0)
+		return lineas.values().stream().map(Linea::getTotal).filter(total -> total.compareTo(BigDecimal.ZERO) != 0)
 				.reduce(BigDecimal.ZERO, BigDecimal::add);
 	}
 

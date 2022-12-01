@@ -26,6 +26,7 @@
 
 <script src="js/datatables.js"></script>
 <script src="js/cantidad.js"></script>
+<script src="js/cantidad-total.js"></script>
 
 </head>
 <body class="d-flex flex-column h-100">

@@ -58,7 +58,7 @@ public class DaoMySqlUsuarios implements DaoUsuario {
 			Cliente cliente = null;
 			
 			if(rs.next()) {
-				cliente = new Cliente(rs.getLong("c.id"), rs.getString("nombre"), rs.getString("nif"), rs.getString("email"));
+				cliente = new Cliente(rs.getLong("c.id"), rs.getString("c.nombre"), rs.getString("c.nif"), rs.getString("c.email"));
 				rol = new Rol(rs.getLong("r.id"), rs.getString("r.nombre"), rs.getString("r.descripcion"));
 				usuario = new Usuario(rs.getLong("u.id"), rs.getString("u.email"), rs.getString("u.password"), rol, cliente);
 			}

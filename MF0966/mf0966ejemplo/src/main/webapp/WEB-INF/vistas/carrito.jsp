@@ -5,7 +5,7 @@
 <h2>Carrito</h2>
 
 <div class="table-responsive">
-	<table class="table table-striped table-hover table-bordered">
+	<table class="decorada table table-striped table-hover table-bordered">
 		<caption class="d-none">Carrito</caption>
 		<thead class="table-dark">
 			<tr>

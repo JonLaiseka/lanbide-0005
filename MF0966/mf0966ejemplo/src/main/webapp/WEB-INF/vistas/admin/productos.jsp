@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
-<table class="table table-striped table-hover table-bordered">
+<table class="decorada table table-striped table-hover table-bordered">
 	<caption>Productos</caption>
 	<thead class="table-dark">
 		<tr>

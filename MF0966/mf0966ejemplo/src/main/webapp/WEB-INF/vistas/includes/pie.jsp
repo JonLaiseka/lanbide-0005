@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 </div>
-<footer class="bg-dark text-light p-3 mt-auto">
+<footer class="d-print-none bg-dark text-light p-3 mt-auto">
 	<p>&copy; 2022 Javier Lete</p>
 </footer>
 

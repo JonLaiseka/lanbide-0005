@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('table').DataTable({
+	$('.decorada').DataTable({
 		language: {
 			url: 'json/es-ES.json'
 		}

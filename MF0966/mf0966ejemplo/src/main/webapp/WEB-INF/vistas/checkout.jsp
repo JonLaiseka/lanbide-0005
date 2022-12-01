@@ -5,22 +5,24 @@
 <h2>Checkout</h2>
 
 <!-- TODO quitar el dato de código de factura -->
+<div class="d-flex">
+	<div class="me-auto">
+		<p>Datos de empresa</p>
+		<p>${factura.codigo}</p>
+	</div>
 
-<p>${factura.codigo}</p>
-
-<div>
-	<p>${factura.cliente.nif}</p>
-	<p>${factura.cliente.nombre}</p>
-	<p>${factura.cliente.email}</p>
-	<p>${factura.fecha}</p>
+	<div>
+		<p>${factura.cliente.nif}</p>
+		<p>${factura.cliente.nombre}</p>
+		<p>${factura.cliente.email}</p>
+		<p>${factura.fecha}</p>
+	</div>
 </div>
-
 <div class="table-responsive">
-	<table class="table table-striped table-hover table-bordered">
+	<table class="table">
 		<caption class="d-none">Carrito</caption>
-		<thead class="table-dark">
+		<thead>
 			<tr>
-				<th scope="col">Imagen</th>
 				<th scope="col">Nombre</th>
 				<th scope="col" class="text-end">Precio</th>
 				<th scope="col" class="text-end">Cantidad</th>
@@ -30,8 +32,6 @@
 		<tbody>
 			<c:forEach items="${factura.lineas}" var="l">
 				<tr>
-					<td><img height="25" src="imgs/${l.producto.id}.jpg"
-						alt="${l.producto.nombre}"></td>
 					<td>${l.producto.nombre}</td>
 					<td class="text-end"><fmt:formatNumber type="currency"
 							value="${l.producto.precio}" /></td>
@@ -41,9 +41,8 @@
 				</tr>
 			</c:forEach>
 		</tbody>
-		<tfoot class="table-dark">
+		<tfoot>
 			<tr>
-				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -54,8 +53,9 @@
 	</table>
 </div>
 
-<a class="btn btn-primary w-100 mb-3" href="">Volver al listado de productos</a>
+<a class="d-print-none btn btn-primary w-100 mb-3" href="">Volver al listado de
+	productos</a>
 
-<a class="btn btn-primary w-100" href="checkout">Pagar</a>
+<a class="d-print-none btn btn-primary w-100" href="checkout">Pagar</a>
 
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>

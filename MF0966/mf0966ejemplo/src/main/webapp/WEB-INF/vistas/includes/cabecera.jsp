@@ -29,8 +29,8 @@
 
 </head>
 <body class="d-flex flex-column h-100">
-	<h1 class="d-none">MF0966 Ejemplo</h1>
-	<nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+	<h1 class="d-none d-print-none">MF0966 Ejemplo</h1>
+	<nav class="d-print-none navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">MF0966 Ejemplo</a>
 			<button class="navbar-toggler" type="button"

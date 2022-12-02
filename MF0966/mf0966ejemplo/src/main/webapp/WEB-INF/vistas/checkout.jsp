@@ -56,6 +56,6 @@
 <a class="d-print-none btn btn-primary w-100 mb-3" href="">Volver al listado de
 	productos</a>
 
-<a class="d-print-none btn btn-primary w-100" href="checkout">Pagar</a>
+<a class="d-print-none btn btn-primary w-100" href="stripe">Pagar</a>
 
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>

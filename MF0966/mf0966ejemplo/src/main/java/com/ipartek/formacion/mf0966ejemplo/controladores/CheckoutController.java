@@ -24,23 +24,22 @@ public class CheckoutController extends HttpServlet {
 		HttpSession session = request.getSession();
 		Usuario usuario = (Usuario) session.getAttribute("usuario");
 		Pedido pedido = (Pedido) session.getAttribute("carrito");
-		
+
 		Factura factura = new Factura(pedido);
-		
+
 		// TODO Usar un código autogenerado
 		factura.setCodigo("2022-0001");
 		factura.setCliente(usuario.getCliente());
 		factura.setFecha(LocalDate.now());
-		
+
 		session.setAttribute("factura", factura);
-		
+
 		request.getRequestDispatcher("/WEB-INF/vistas/checkout.jsp").forward(request, response);
 	}
-
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }

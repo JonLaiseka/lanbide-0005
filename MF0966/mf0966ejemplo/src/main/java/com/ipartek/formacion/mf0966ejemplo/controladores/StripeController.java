@@ -1,10 +1,11 @@
 package com.ipartek.formacion.mf0966ejemplo.controladores;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.logging.Level;
 
 import com.google.gson.Gson;
-import com.google.gson.annotations.SerializedName;
+import com.ipartek.formacion.mf0966ejemplo.modelos.Pedido;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
@@ -37,54 +38,37 @@ public class StripeController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		log.info("Entrada de doPost de STRIPE");
-		
 		response.setContentType("application/json");
 
-		CreatePayment postBody = gson.fromJson(request.getReader(), CreatePayment.class);
+		Pedido pedido = (Pedido) request.getSession().getAttribute("carrito");
+		
+		String secret = realizarPago(pedido);
+		
+		response.getWriter().write(gson.toJson(secret));
+	}
 
+	private static Gson gson = new Gson();
+	
+	private String realizarPago(Pedido pedido) {
+		Long total = pedido.getTotal().multiply(new BigDecimal(100)).longValue();
+		
 		PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
-				.setAmount(calculateOrderAmount(postBody.getItems())).setCurrency("eur").setAutomaticPaymentMethods(
+				.setAmount(total).setCurrency("eur").setAutomaticPaymentMethods(
 						PaymentIntentCreateParams.AutomaticPaymentMethods.builder().setEnabled(true).build())
 				.build();
 
 		// Create a PaymentIntent with the order amount and currency
 		try {
 			PaymentIntent paymentIntent = PaymentIntent.create(params);
-			CreatePaymentResponse paymentResponse = new CreatePaymentResponse(paymentIntent.getClientSecret());
+			
+			log.log(Level.INFO, paymentIntent.getClientSecret());
 			log.log(Level.INFO, "TODO OK");
-
-			response.getWriter().write(gson.toJson(paymentResponse));
+			
+			return paymentIntent.getClientSecret();
 		} catch (StripeException e) {
 			log.log(Level.SEVERE, "Ha fallado STRIPE", e);
-		}
-
-	}
-
-	private static Gson gson = new Gson();
-
-	static class CreatePayment {
-		@SerializedName("items")
-		Object[] items;
-
-		public Object[] getItems() {
-			return items;
+			
+			throw new RuntimeException("Ha fallado STRIPE", e);
 		}
 	}
-
-	static class CreatePaymentResponse {
-		@SuppressWarnings("unused")
-		private String clientSecret;
-
-		public CreatePaymentResponse(String clientSecret) {
-			this.clientSecret = clientSecret;
-		}
-	}
-
-	static Long calculateOrderAmount(Object[] items) {
-		// Replace this constant with a calculation of the order's amount
-		// Calculate the order total on the server to prevent
-		// people from directly manipulating the amount on the client
-		return 1400L;
-	}
-
 }

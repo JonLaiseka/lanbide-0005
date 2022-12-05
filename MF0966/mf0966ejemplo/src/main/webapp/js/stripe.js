@@ -2,7 +2,7 @@
 const stripe = Stripe("pk_test_51HJjTvKQqwGUxNnfKgG0MdVhNJOMcbkKFnQDfec6rek5Phr5Bi1J2ifOPAKQk6zqLMKLrFV6RPg6lyAEM9ckxbaT00QWijpFSz");
 
 // The items the customer wants to buy
-const items = [{ id: "xl-tshirt" }];
+// const items = [{ id: "xl-tshirt" }];
 
 let elements;
 
@@ -20,12 +20,22 @@ async function initialize() {
 	const response = await fetch("http://localhost:8080/mf0966ejemplo/stripe", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({ items }),
+		// body: JSON.stringify({ items }),
 	});
 	
 	console.log('Después de la petición');
 	
-	const { clientSecret } = await response.json();
+//	const reader = response.body.getReader();
+//	
+//	let respuesta;
+//	
+//	do {
+//		respuesta = await reader.read();
+//		
+//		console.log(respuesta.value);
+//	} while(!respuesta.done);
+//	
+	const clientSecret = await response.json();
 
 	console.log(clientSecret);
 
@@ -50,7 +60,7 @@ async function handleSubmit(e) {
 		elements,
 		confirmParams: {
 			// Make sure to change this to your payment completion page
-			return_url: "http://localhost:8080/mf0966ejemplo/stripe",
+			return_url: "http://localhost:8080/mf0966ejemplo/pago-confirmado",
 		},
 	});
 

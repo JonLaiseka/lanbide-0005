@@ -4,7 +4,7 @@ USE `mf0966ejemplo`;
 --
 -- Host: localhost    Database: mf0966ejemplo
 -- ------------------------------------------------------
--- Server version	8.0.29
+-- Server version	8.0.31
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -86,7 +86,7 @@ CREATE TABLE `empleados` (
   KEY `IX_NIF` (`nif`),
   KEY `fk_empleados_empleados1_idx` (`jefe_id`),
   CONSTRAINT `fk_empleados_empleados1` FOREIGN KEY (`jefe_id`) REFERENCES `empleados` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +95,7 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES (1,'Jefazo','12345678Z',NULL),(2,'Empleado2','12345678Z',1),(3,'Empleado3','12345678Z',1),(4,'Empleado4','12345678Z',2);
+INSERT INTO `empleados` VALUES (1,'Jefazo','12345678Z',NULL),(2,'Empleado2','12345678Z',1),(3,'Empleado3','12345678Z',1),(4,'Empleado4','12345678Z',2),(5,'Aplicación Web','12345678Z',1);
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,7 +118,7 @@ CREATE TABLE `facturas` (
   KEY `fk_facturas_empleados1_idx` (`empleados_id`),
   CONSTRAINT `fk_facturas_clientes1` FOREIGN KEY (`clientes_id`) REFERENCES `clientes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_facturas_empleados1` FOREIGN KEY (`empleados_id`) REFERENCES `empleados` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,7 +127,7 @@ CREATE TABLE `facturas` (
 
 LOCK TABLES `facturas` WRITE;
 /*!40000 ALTER TABLE `facturas` DISABLE KEYS */;
-INSERT INTO `facturas` VALUES (1,'2022-001','2022-11-16',3,4),(2,'2022-002','2022-11-16',4,3);
+INSERT INTO `facturas` VALUES (1,'2022-001','2022-11-16',3,4),(2,'2022-002','2022-11-16',4,3),(4,'2022-003','2022-12-07',3,5),(6,'2022-004','2022-12-07',3,5);
 /*!40000 ALTER TABLE `facturas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,7 +156,7 @@ CREATE TABLE `facturas_has_productos` (
 
 LOCK TABLES `facturas_has_productos` WRITE;
 /*!40000 ALTER TABLE `facturas_has_productos` DISABLE KEYS */;
-INSERT INTO `facturas_has_productos` VALUES (1,1,3),(1,2,5),(2,2,1),(2,3,1);
+INSERT INTO `facturas_has_productos` VALUES (1,1,3),(1,2,5),(2,2,1),(2,3,1),(4,1,7),(4,2,1),(4,3,5),(6,1,7),(6,2,1),(6,3,5);
 /*!40000 ALTER TABLE `facturas_has_productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,6 +215,18 @@ INSERT INTO `roles` VALUES (1,'ADMIN','El superusuario que tiene superpoderes'),
 UNLOCK TABLES;
 
 --
+-- Temporary view structure for view `ultimo_codigo`
+--
+
+DROP TABLE IF EXISTS `ultimo_codigo`;
+/*!50001 DROP VIEW IF EXISTS `ultimo_codigo`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `ultimo_codigo` AS SELECT 
+ 1 AS `ultimo_codigo`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `usuarios`
 --
 
@@ -253,6 +265,59 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'mf0966ejemplo'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `nuevo_codigo` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `nuevo_codigo`(anyo CHAR(4))
+BEGIN
+	DECLARE codigo_anterior CHAR(8);
+    DECLARE codigo_nuevo CHAR(8);
+    DECLARE numero INT;
+
+    SET codigo_anterior = (SELECT MAX(codigo) FROM facturas WHERE (SUBSTR(codigo, 1, 4) = anyo));
+    
+	IF ISNULL(codigo_anterior) THEN
+		SET codigo_nuevo = CONCAT(anyo, '-001');
+	ELSE
+		SET numero = SUBSTRING(codigo_anterior, 6,7);
+    
+		SET numero = numero + 1;
+    
+		SET codigo_nuevo = CONCAT(anyo, '-', LPAD(numero, 3, '0'));
+    END IF;
+    
+SELECT codigo_nuevo;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Final view structure for view `ultimo_codigo`
+--
+
+/*!50001 DROP VIEW IF EXISTS `ultimo_codigo`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `ultimo_codigo` AS select max(`facturas`.`codigo`) AS `ultimo_codigo` from `facturas` where (substr(`facturas`.`codigo`,1,4) = '2022') */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -263,4 +328,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-24 10:20:49
+-- Dump completed on 2022-12-07 10:32:29

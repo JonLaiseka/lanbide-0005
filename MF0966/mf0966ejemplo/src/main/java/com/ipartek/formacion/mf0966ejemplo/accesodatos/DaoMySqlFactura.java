@@ -1,5 +1,6 @@
 package com.ipartek.formacion.mf0966ejemplo.accesodatos;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +15,7 @@ public class DaoMySqlFactura implements Dao<Factura> {
 
 	private static final String SQL_INSERT = "INSERT INTO facturas (codigo, fecha, clientes_id, empleados_id) VALUES (?,?,?,?)";
 	private static final String SQL_INSERT_LINEA = "INSERT INTO facturas_has_productos (facturas_id, productos_id, cantidad) VALUES (?,?,?)";
-	private static final String SQL_ULTIMO_CODIGO = "SELECT MAX(codigo) FROM facturas WHERE SUBSTRING(codigo, 1, 4) = ?";
+	private static final String SQL_NUEVO_CODIGO = "call nuevo_codigo(?)";
 
 	// SINGLETON
 	private DaoMySqlFactura() {}
@@ -35,34 +36,19 @@ public class DaoMySqlFactura implements Dao<Factura> {
 	}
 
 	private String nuevoCodigoFactura(Connection con, Factura factura) {
-		String codigo = ultimoCodigoFactura(con, factura);
-		
-		if(codigo == null) {
-			return factura.getFecha().getYear() + "-001";
+		try (CallableStatement cst = con.prepareCall(SQL_NUEVO_CODIGO)) {
+			cst.setString(1, String.valueOf(factura.getFecha().getYear()));
+			
+			ResultSet rs = cst.executeQuery();
+			
+			rs.next();
+			
+			return rs.getString(1);
+		} catch (SQLException e) {
+			throw new AccesoDatosException("No se ha podido recibir el nuevo código", e);
 		}
-		
-		String numeroTexto = codigo.substring(5);
-		int numero = Integer.parseInt(numeroTexto);
-		numero++;
-		
-		return String.format("%tY-%03d", factura.getFecha(), numero);
 	}
 	
-	private String ultimoCodigoFactura(Connection con, Factura factura) {
-		try (PreparedStatement pst = con.prepareStatement(SQL_ULTIMO_CODIGO)) {
-			pst.setString(1, String.valueOf(factura.getFecha().getYear()));
-			
-			ResultSet rs = pst.executeQuery();
-			
-			if(rs.next()) {
-				return rs.getString(1);
-			}
-			
-			return null;
-		} catch (SQLException e) {
-			throw new AccesoDatosException("No se ha podido buscar el último código de factura", e);
-		}
-	}
 	private Factura insertarImpl(Factura factura, Connection con) {
 		try (PreparedStatement pst = con.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS)) {
 			con.setAutoCommit(false);

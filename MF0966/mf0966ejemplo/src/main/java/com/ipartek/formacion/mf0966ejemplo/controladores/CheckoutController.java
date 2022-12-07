@@ -28,7 +28,7 @@ public class CheckoutController extends HttpServlet {
 		Factura factura = new Factura(pedido);
 
 		// TODO Usar un código autogenerado
-		factura.setCodigo("2022-0001");
+		factura.setCodigo("2022-003");
 		factura.setCliente(usuario.getCliente());
 		factura.setEmpleado(Globales.EMPLEADO);
 		factura.setFecha(LocalDate.now());

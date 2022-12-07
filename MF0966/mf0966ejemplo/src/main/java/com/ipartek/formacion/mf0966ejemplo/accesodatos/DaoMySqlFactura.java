@@ -11,7 +11,7 @@ import com.ipartek.formacion.mf0966ejemplo.modelos.Pedido.Linea;
 
 public class DaoMySqlFactura implements Dao<Factura> {
 
-	private static final String SQL_INSERT = "INSERT INTO factura (codigo, fecha, clientes_id, empleados_id) VALUES (?,?,?,?)";
+	private static final String SQL_INSERT = "INSERT INTO facturas (codigo, fecha, clientes_id, empleados_id) VALUES (?,?,?,?)";
 	private static final String SQL_INSERT_LINEA = "INSERT INTO facturas_has_productos (facturas_id, productos_id, cantidad) VALUES (?,?,?)";
 
 	// SINGLETON
@@ -52,6 +52,8 @@ public class DaoMySqlFactura implements Dao<Factura> {
 
 		} catch (SQLException e) {
 			deshacerTransaccion(con);
+			
+			throw new AccesoDatosException("Se ha cancelado la transacción", e);
 		}
 		
 		return factura;

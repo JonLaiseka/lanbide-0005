@@ -1,7 +1,6 @@
 package com.ipartek.formacion.mf0966ejemplo.controladores;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 import com.ipartek.formacion.mf0966ejemplo.modelos.Factura;
 import com.ipartek.formacion.mf0966ejemplo.modelos.Pedido;
@@ -27,11 +26,10 @@ public class CheckoutController extends HttpServlet {
 
 		Factura factura = new Factura(pedido);
 
-		// TODO Usar un código autogenerado
-		factura.setCodigo("2022-003");
+		factura.setCodigo(null);
 		factura.setCliente(usuario.getCliente());
 		factura.setEmpleado(Globales.EMPLEADO);
-		factura.setFecha(LocalDate.now());
+		factura.setFecha(null);
 
 		session.setAttribute("factura", factura);
 

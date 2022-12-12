@@ -98,6 +98,28 @@ LOCK TABLES `empleados` WRITE;
 INSERT INTO `empleados` VALUES (1,'Jefazo','12345678Z',NULL),(2,'Empleado2','12345678Z',1),(3,'Empleado3','12345678Z',1),(4,'Empleado4','12345678Z',2),(5,'Aplicación Web','12345678Z',1);
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `empleados_BEFORE_UPDATE` BEFORE UPDATE ON `empleados` FOR EACH ROW BEGIN
+    IF LENGTH(NEW.nombre) < 3 THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No se puede poner un nombre de menos de 3 caracteres';
+    END IF;
+    
+    INSERT INTO log SELECT OLD.id, OLD.nombre, OLD.nif, OLD.jefe_id;
+    INSERT INTO log SELECT NEW.id, NEW.nombre, NEW.nif, NEW.jefe_id;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `facturas`
@@ -158,6 +180,31 @@ LOCK TABLES `facturas_has_productos` WRITE;
 /*!40000 ALTER TABLE `facturas_has_productos` DISABLE KEYS */;
 INSERT INTO `facturas_has_productos` VALUES (1,1,3),(1,2,5),(2,2,1),(2,3,1),(4,1,7),(4,2,1),(4,3,5),(6,1,7),(6,2,1),(6,3,5),(7,1,7),(7,2,1),(7,3,5);
 /*!40000 ALTER TABLE `facturas_has_productos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `log`
+--
+
+DROP TABLE IF EXISTS `log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `log` (
+  `id` bigint NOT NULL DEFAULT '0',
+  `nombre` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nif` char(9) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jefe_id` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `log`
+--
+
+LOCK TABLES `log` WRITE;
+/*!40000 ALTER TABLE `log` DISABLE KEYS */;
+INSERT INTO `log` VALUES (3,'Empleado3','12345678Z',1),(3,'Cambiado','12345678Z',1),(3,'Empleado3','12345678Z',1),(3,'Empleado3','12345678Z',1),(3,'Cambio1','12345678Z',1),(3,'Cambio1','12345678Z',1),(3,'Cambio2','12345678Z',1),(3,'Cambio2','12345678Z',1),(3,'Empleado3','12345678Z',1);
+/*!40000 ALTER TABLE `log` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -265,6 +312,27 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'mf0966ejemplo'
 --
+/*!50003 DROP FUNCTION IF EXISTS `sumar` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `sumar`(a INT, b INT) RETURNS int
+    DETERMINISTIC
+BEGIN
+
+RETURN a + b;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `empleados_borrar` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -440,4 +508,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-09 10:29:15
+-- Dump completed on 2022-12-12 12:21:21

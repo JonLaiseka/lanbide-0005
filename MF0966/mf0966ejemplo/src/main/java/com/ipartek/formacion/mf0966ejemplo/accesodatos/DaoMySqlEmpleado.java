@@ -108,10 +108,10 @@ public class DaoMySqlEmpleado implements Dao<Empleado> {
 	@Override
 	public Empleado modificar(Empleado empleado) {
 		try (Connection con = getConexion(); CallableStatement cst = con.prepareCall(SQL_UPDATE);) {
-			cst.setString(1, empleado.getNombre());
-			cst.setString(2, empleado.getNif());
-			cst.setLong(3, empleado.getJefe().getId());
-			cst.setLong(4,  empleado.getId());
+			cst.setLong(1,  empleado.getId());
+			cst.setString(2, empleado.getNombre());
+			cst.setString(3, empleado.getNif());
+			cst.setLong(4, empleado.getJefe().getId());
 			
 			cst.executeUpdate();
 			

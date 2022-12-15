@@ -82,7 +82,7 @@ public class ProductoRestController extends HttpServlet {
 	private Long obtenerId(HttpServletRequest request) {
 		String pathInfo = request.getPathInfo();
 		
-		if(pathInfo == null) {
+		if(pathInfo == null || pathInfo.trim().length() <= 1) {
 			return null;
 		}
 		

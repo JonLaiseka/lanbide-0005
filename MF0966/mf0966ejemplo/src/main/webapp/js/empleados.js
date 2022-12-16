@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', async function() {
 
 		console.log(empleado);
 
-		const respuesta = await fetch(URL + ((metodo === 'PUT') ? empleado.id: ''), {
+		const respuesta = await fetch(URL + ((metodo === 'PUT') ? empleado.id : ''), {
 			method: metodo,
 			body: JSON.stringify(empleado),
 			headers: {
@@ -43,14 +43,14 @@ window.addEventListener('DOMContentLoaded', async function() {
 		});
 
 		console.log(respuesta);
-		
-		if(!respuesta.ok) {
+
+		if (!respuesta.ok) {
 			alert('No se ha podido guardar el empleado');
 			return;
 		}
-		
+
 		await refrescarTabla();
-		
+
 		form.reset();
 
 		tabla.style.display = 'table';
@@ -74,7 +74,6 @@ async function refrescarTabla() {
 	const tbody = document.querySelector('tbody');
 
 	tbody.innerHTML = '';
-	jefes.innerHTML = '<option selected value="0">Seleccione un jefe</option>';
 
 	empleados.forEach(function(empleado) {
 		console.log(empleado);
@@ -95,13 +94,6 @@ async function refrescarTabla() {
 		`;
 
 		tbody.appendChild(tr);
-
-		const option = document.createElement('option');
-
-		option.value = empleado.id;
-		option.innerText = empleado.nombre;
-
-		jefes.appendChild(option);
 	});
 }
 
@@ -109,21 +101,50 @@ async function editar(id) {
 	tabla.style.display = 'none';
 	form.style.display = 'block';
 
+	let empleado;
+
+	if (id) {
+		const respuesta = await fetch(URL + id);
+		empleado = await respuesta.json();
+
+		console.log(empleado);
+	}
+
+	const respuestaTodos = await fetch(URL);
+	const empleados = await respuestaTodos.json();
+
+	jefes.innerHTML = '<option selected value="0">No tiene jefe</option>';
+
+	empleados.forEach(function(e) {
+		if (id !== e.id) {
+			const option = document.createElement('option');
+
+			option.value = e.id;
+			option.innerText = e.nombre;
+
+			jefes.appendChild(option);
+		} else {
+			console.log('Excluyo el ' + e.nombre + ' de la lista');
+		}
+	});
+	
+	if(id) {
+		form.id.value = empleado.id;
+		form.nombre.value = empleado.nombre;
+		form.nif.value = empleado.nif;
+		form.jefe.value = empleado.jefe.id;
+	}
+}
+
+async function borrar(id) {
 	if (!id) {
+		console.error('Se ha recibido un id no válido para borrar');
 		return;
 	}
 
-	const respuesta = await fetch(URL + id);
-	const empleado = await respuesta.json();
+	const respuesta = await fetch(URL + id, { method: 'DELETE' });
 
-	console.log(empleado);
+	console.log(respuesta);
 
-	form.id.value = empleado.id;
-	form.nombre.value = empleado.nombre;
-	form.nif.value = empleado.nif;
-	form.jefe.value = empleado.jefe.id;
-}
-
-function borrar(id) {
-	alert('borrar ' + id);
+	refrescarTabla();
 }

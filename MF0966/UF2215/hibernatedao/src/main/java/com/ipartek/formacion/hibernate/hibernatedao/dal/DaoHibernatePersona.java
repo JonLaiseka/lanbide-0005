@@ -25,12 +25,12 @@ public class DaoHibernatePersona implements Dao<Persona> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Iterable<Persona> obtenerTodos() {
-		return (Iterable<Persona>) eet(em -> em.createQuery("from Persona", Persona.class).getResultList());
+		return (Iterable<Persona>) eet(em -> em.createQuery("from Persona p join fetch p.colectivo", Persona.class).getResultList());
 	}
 
 	@Override
 	public Persona obtenerPorId(Long id) {
-		return (Persona) eet(em -> em.find(Persona.class, id));
+		return (Persona) eet(em -> em.createQuery("from Persona p join fetch p.colectivo where p.id = " + id, Persona.class).getSingleResult());// em.find(Persona.class, id));
 	}
 
 	@Override

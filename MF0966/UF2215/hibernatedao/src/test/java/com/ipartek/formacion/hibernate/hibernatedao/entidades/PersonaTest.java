@@ -1,7 +1,11 @@
-package com.ipartek.formacion.hibernate.hibernatedao;
+package com.ipartek.formacion.hibernate.hibernatedao.entidades;
 
 import static org.junit.Assert.*;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.Iterator;
 
@@ -10,18 +14,15 @@ import org.junit.Test;
 
 import com.ipartek.formacion.hibernate.hibernatedao.dal.Dao;
 import com.ipartek.formacion.hibernate.hibernatedao.dal.DaoHibernatePersona;
-import com.ipartek.formacion.hibernate.hibernatedao.entidades.Persona;
 
-import java.sql.*;
-
-public class AppTest 
+public class PersonaTest 
 {
 	private static final LocalDate FECHA_TEST = LocalDate.of(2022, 12, 21);
 	
-	private static final Persona PERSONA_1 = new Persona(1L, "Javier", FECHA_TEST);
-	private static final Persona PERSONA_2 = new Persona(2L, "Pepe", FECHA_TEST);
-	private static final Persona PERSONA_NUEVO = new Persona(null, "Nuevo", FECHA_TEST);
-	private static final Persona PERSONA_MODIFICADO = new Persona(2L, "Modificado", FECHA_TEST);
+	private static final Persona PERSONA_1 = Persona.builder().id(1L).nombre("Javier").fechaNacimiento(FECHA_TEST).build(); // new Persona(1L, "Javier", FECHA_TEST);
+	private static final Persona PERSONA_2 = Persona.builder().id(2L).nombre("Pepe").fechaNacimiento(FECHA_TEST).build(); // new Persona(2L, "Pepe", FECHA_TEST);
+	private static final Persona PERSONA_NUEVO = Persona.builder().nombre("Nuevo").fechaNacimiento(FECHA_TEST).build(); // new Persona(null, "Nuevo", FECHA_TEST);
+	private static final Persona PERSONA_MODIFICADO = Persona.builder().id(2L).nombre("Modificado").fechaNacimiento(FECHA_TEST).build(); // new Persona(2L, "Modificado", FECHA_TEST);
 	
 	private static final Dao<Persona> dao = DaoHibernatePersona.getInstancia();
 	
@@ -30,15 +31,11 @@ public class AppTest
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hibernatedao", "root", "admin");
 		Statement st = con.createStatement();
 		
-		st.executeUpdate("TRUNCATE personas");
-		
-		st.executeUpdate("INSERT INTO personas VALUES (null, '2022-12-21', 'Javier')");
-		st.executeUpdate("INSERT INTO personas VALUES (null, '2022-12-21', 'Pepe')");
+		st.executeUpdate("INSERT INTO personas (nombre, fecha_nacimiento) VALUES ('Javier', '2022-12-21'), ('Pepe', '2022-12-21')");
 	}
 	
-	
     @Test
-    public void obtenerTodos()
+    public void obtenerTodosTest()
     {
         Iterable<Persona> personas = dao.obtenerTodos();
         

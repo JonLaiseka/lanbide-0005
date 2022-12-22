@@ -5,6 +5,7 @@
 
 	<persistence-unit name="com.ipartek.formacion.hibernate.hibernatedao.entidades">
 		<class>com.ipartek.formacion.hibernate.hibernatedao.entidades.Persona</class>
+		<class>com.ipartek.formacion.hibernate.hibernatedao.entidades.Colectivo</class>
 		<properties>
 			<property name="jakarta.persistence.jdbc.driver"
 				value="com.mysql.cj.jdbc.Driver" />
@@ -14,7 +15,7 @@
 			<property name="jakarta.persistence.jdbc.password" value="admin" />
 
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.hbm2ddl.auto" value="none" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
 		</properties>
 
 	</persistence-unit>

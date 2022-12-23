@@ -1,5 +1,11 @@
 package com.ipartek.formacion.spring.mf0966spring.entidades;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,11 +13,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Builder
+@Entity
+@Table(name = "empleados")
 public class Empleado {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
 	private String nif;
 
+	@ManyToOne
 	private Empleado jefe;
 
 	public Empleado(Long id, String nombre, String nif, Empleado jefe) {

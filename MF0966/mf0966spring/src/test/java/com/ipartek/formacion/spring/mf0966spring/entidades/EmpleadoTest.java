@@ -24,13 +24,13 @@ public class EmpleadoTest {
 	@Test
 	public void insertar() {
 		Empleado empleadoNuevo = Empleado.builder().nombre("Nuevo").nif("12345678Z").build();
-		repo.insertar(empleadoNuevo);
+		System.out.println(repo.insertar(empleadoNuevo));
 	}
 
 	@Test
 	public void modificar() {
 		Empleado empleadoModificado = Empleado.builder().id(16L).nombre("MODIFICADO").nif("12345678Z").build();
-		repo.modificar(empleadoModificado);
+		System.out.println(repo.modificar(empleadoModificado));
 	}
 	
 	@Test

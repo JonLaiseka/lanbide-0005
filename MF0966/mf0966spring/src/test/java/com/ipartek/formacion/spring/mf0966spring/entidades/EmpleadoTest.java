@@ -19,11 +19,13 @@ public class EmpleadoTest {
 	@Test
 	public void obtenerPorId() {
 		System.out.println(repo.obtenerPorId(1L));
+		System.out.println(repo.obtenerPorId(2L));
+		System.out.println(repo.obtenerPorId(Long.MAX_VALUE));
 	}
 	
 	@Test
 	public void insertar() {
-		Empleado empleadoNuevo = Empleado.builder().nombre("Nuevo").nif("12345678Z").build();
+		Empleado empleadoNuevo = Empleado.builder().nombre("Nuevo").nif("12345678Z").jefe(Empleado.builder().id(1L).build()).build();
 		System.out.println(repo.insertar(empleadoNuevo));
 	}
 

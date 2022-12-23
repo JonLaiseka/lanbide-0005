@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -23,8 +24,21 @@ public class EmpleadoRepository {
 	}
 
 	public Empleado obtenerPorId(Long id) {
-		return jdbc.queryForObject("SELECT * FROM empleados WHERE id = ?",
-				new BeanPropertyRowMapper<Empleado>(Empleado.class), id);
+		try {
+			return jdbc.queryForObject(
+					"SELECT * FROM empleados e LEFT JOIN empleados j ON e.jefe_id = j.id WHERE e.id = ?",
+					(rs, rowNum) -> {
+						Empleado jefe = null;
+						if(rs.getObject("jefe_id") != null) {
+							jefe = Empleado.builder().id(rs.getLong("j.id")).nombre(rs.getString("j.nombre")).nif(rs.getString("j.nif")).jefe(null).build();
+						}
+						Empleado empleado = Empleado.builder().id(rs.getLong("e.id")).nombre(rs.getString("e.nombre")).nif(rs.getString("e.nif")).jefe(jefe).build();
+						return empleado;
+					},
+					id);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 	public Empleado insertar(Empleado empleado) {
@@ -33,9 +47,11 @@ public class EmpleadoRepository {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 
 		jdbc.update(con -> {
-			PreparedStatement ps = con.prepareStatement("INSERT INTO empleados (nombre, nif) VALUES (?,?)", Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = con.prepareStatement("INSERT INTO empleados (nombre, nif, jefe_id) VALUES (?,?,?)",
+					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, empleado.getNombre());
 			ps.setString(2, empleado.getNif());
+			ps.setLong(3, empleado.getJefe() != null ? empleado.getJefe().getId(): null);
 			return ps;
 		}, keyHolder);
 
@@ -46,8 +62,8 @@ public class EmpleadoRepository {
 	}
 
 	public Empleado modificar(Empleado empleado) {
-		jdbc.update("UPDATE empleados SET nombre=?, nif=? WHERE id = ?", empleado.getNombre(), empleado.getNif(),
-				empleado.getId());
+		jdbc.update("UPDATE empleados SET nombre=?, nif=?, jefe_id=? WHERE id = ?", empleado.getNombre(), empleado.getNif(),
+				empleado.getJefe() != null ? empleado.getJefe().getId(): null, empleado.getId());
 		return empleado;
 	}
 

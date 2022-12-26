@@ -1,0 +1,120 @@
+openapi: 3.0.0
+info:
+  title: Empleados
+  version: 1.0.0
+  contact:
+    email: javier@email.net
+  description: Ejemplo de Documentación de OpenAPI
+servers:
+  - url: http://localhost:8080/api
+tags:
+  - name: Empleado
+paths:
+  /empleados:
+    get:
+      operationId: obtenerTodosEmpleados
+      description: Obtener todos los empleados
+      summary: Obtener todos los empleados
+      tags:
+        - Empleado
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/empleado"
+
+    post:
+      operationId: insertarEmpleado
+      description: Enviar un nuevo empleado
+      summary: Enviar un nuevo empleado
+      tags:
+        - Empleado
+      requestBody: 
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/empleado"
+      responses:
+        "201":
+          description: "CREATED"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/empleado"
+  /empleados/{id}:
+    get:
+      operationId: obtenerPorIdEmpleado
+      description: Obtener empleado por ID
+      summary: Obtener empleado por ID
+      tags:
+        - Empleado
+      parameters: 
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/hal+json:
+              schema:
+                $ref: "#/components/schemas/empleado"
+    put:
+      operationId: modificarEmpleado
+      description: Modificar un empleado existente
+      summary: Modificar un empleado existente
+      tags:
+        - Empleado
+      parameters: 
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody: 
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/empleado"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/empleado"
+    delete:
+      operationId: deleteEmpleado
+      description: Borrar por id
+      summary: Borrar por id
+      tags:
+      - Empleado
+      parameters: 
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: No content
+
+components:
+  schemas:
+    empleado:
+      type: object
+      properties:
+        id:
+          type: integer
+        nombre:
+          type: string
+        nif:
+          type: string
+        jefe:
+          $ref: "#/components/schemas/empleado"

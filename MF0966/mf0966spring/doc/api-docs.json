@@ -1,0 +1,838 @@
+{
+	"openapi": "3.0.1",
+	"info": {
+		"title": "OpenAPI definition",
+		"version": "v0"
+	},
+	"servers": [
+		{
+			"url": "http://localhost:8080",
+			"description": "Generated server url"
+		}
+	],
+	"paths": {
+		"/api/empleados": {
+			"get": {
+				"tags": [
+					"empleado-entity-controller"
+				],
+				"description": "get-empleado",
+				"operationId": "getCollectionResource-empleado-get_1",
+				"parameters": [
+					{
+						"name": "page",
+						"in": "query",
+						"description": "Zero-based page index (0..N)",
+						"required": false,
+						"schema": {
+							"minimum": 0,
+							"type": "integer",
+							"default": 0
+						}
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"description": "The size of the page to be returned",
+						"required": false,
+						"schema": {
+							"minimum": 1,
+							"type": "integer",
+							"default": 20
+						}
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+						"required": false,
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/hal+json": {
+								"schema": {
+									"$ref": "#/components/schemas/PagedModelEntityModelEmpleado"
+								}
+							},
+							"application/x-spring-data-compact+json": {
+								"schema": {
+									"$ref": "#/components/schemas/PagedModelEntityModelEmpleado"
+								}
+							},
+							"text/uri-list": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"empleado-entity-controller"
+				],
+				"description": "create-empleado",
+				"operationId": "postCollectionResource-empleado-post",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/EmpleadoRequestBody"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/hal+json": {
+								"schema": {
+									"$ref": "#/components/schemas/EntityModelEmpleado"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/empleados/search/findByNombre": {
+			"get": {
+				"tags": [
+					"empleado-search-controller"
+				],
+				"operationId": "executeSearch-empleado-get",
+				"parameters": [
+					{
+						"name": "nombre",
+						"in": "query",
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/hal+json": {
+								"schema": {
+									"$ref": "#/components/schemas/EntityModelEmpleado"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/api/empleados/search/getByNombre": {
+			"get": {
+				"tags": [
+					"empleado-search-controller"
+				],
+				"operationId": "executeSearch-empleado-get_1",
+				"parameters": [
+					{
+						"name": "nombre",
+						"in": "query",
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/hal+json": {
+								"schema": {
+									"$ref": "#/components/schemas/EntityModelEmpleado"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/api/empleados/{id}": {
+			"get": {
+				"tags": [
+					"empleado-entity-controller"
+				],
+				"description": "get-empleado",
+				"operationId": "getItemResource-empleado-get",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/hal+json": {
+								"schema": {
+									"$ref": "#/components/schemas/EntityModelEmpleado"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			},
+			"put": {
+				"tags": [
+					"empleado-entity-controller"
+				],
+				"description": "update-empleado",
+				"operationId": "putItemResource-empleado-put",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/EmpleadoRequestBody"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/hal+json": {
+								"schema": {
+									"$ref": "#/components/schemas/EntityModelEmpleado"
+								}
+							}
+						}
+					},
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/hal+json": {
+								"schema": {
+									"$ref": "#/components/schemas/EntityModelEmpleado"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No Content"
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"empleado-entity-controller"
+				],
+				"description": "delete-empleado",
+				"operationId": "deleteItemResource-empleado-delete",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "No Content"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			},
+			"patch": {
+				"tags": [
+					"empleado-entity-controller"
+				],
+				"description": "patch-empleado",
+				"operationId": "patchItemResource-empleado-patch",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/EmpleadoRequestBody"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/hal+json": {
+								"schema": {
+									"$ref": "#/components/schemas/EntityModelEmpleado"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No Content"
+					}
+				}
+			}
+		},
+		"/api/empleados/{id}/jefe": {
+			"get": {
+				"tags": [
+					"empleado-property-reference-controller"
+				],
+				"description": "get-empleado-by-empleado-Id",
+				"operationId": "followPropertyReference-empleado-get_1",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/hal+json": {
+								"schema": {
+									"$ref": "#/components/schemas/EntityModelEmpleado"
+								}
+							},
+							"text/uri-list": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			},
+			"put": {
+				"tags": [
+					"empleado-property-reference-controller"
+				],
+				"description": "update-empleado-by-empleado-Id",
+				"operationId": "createPropertyReference-empleado-put",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CollectionModelObject"
+							}
+						},
+						"application/x-spring-data-compact+json": {
+							"schema": {
+								"$ref": "#/components/schemas/CollectionModelObject"
+							}
+						},
+						"text/uri-list": {
+							"schema": {
+								"type": "string"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/hal+json": {
+								"schema": {
+									"$ref": "#/components/schemas/EntityModelEmpleado"
+								}
+							}
+						}
+					},
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/hal+json": {
+								"schema": {
+									"$ref": "#/components/schemas/EntityModelEmpleado"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No Content"
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"empleado-property-reference-controller"
+				],
+				"description": "delete-empleado-by-empleado-Id",
+				"operationId": "deletePropertyReference-empleado-delete",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "No Content"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			},
+			"patch": {
+				"tags": [
+					"empleado-property-reference-controller"
+				],
+				"description": "patch-empleado-by-empleado-Id",
+				"operationId": "createPropertyReference-empleado-patch",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CollectionModelObject"
+							}
+						},
+						"application/x-spring-data-compact+json": {
+							"schema": {
+								"$ref": "#/components/schemas/CollectionModelObject"
+							}
+						},
+						"text/uri-list": {
+							"schema": {
+								"type": "string"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/hal+json": {
+								"schema": {
+									"$ref": "#/components/schemas/EntityModelEmpleado"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No Content"
+					}
+				}
+			}
+		},
+		"/api/empleados/{id}/jefe/{propertyId}": {
+			"get": {
+				"tags": [
+					"empleado-property-reference-controller"
+				],
+				"description": "get-empleado-by-empleado-Id",
+				"operationId": "followPropertyReference-empleado-get",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "propertyId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/hal+json": {
+								"schema": {
+									"$ref": "#/components/schemas/EntityModelEmpleado"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"empleado-property-reference-controller"
+				],
+				"description": "delete-empleado-by-empleado-Id",
+				"operationId": "deletePropertyReferenceId-empleado-delete",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "propertyId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "No Content"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/api/profile": {
+			"get": {
+				"tags": [
+					"profile-controller"
+				],
+				"operationId": "listAllFormsOfMetadata_1",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/hal+json": {
+								"schema": {
+									"$ref": "#/components/schemas/RepresentationModelObject"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/profile/empleados": {
+			"get": {
+				"tags": [
+					"profile-controller"
+				],
+				"operationId": "descriptor_1_1_1",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "string"
+								}
+							},
+							"application/alps+json": {
+								"schema": {
+									"type": "string"
+								}
+							},
+							"application/schema+json": {
+								"schema": {
+									"$ref": "#/components/schemas/JsonSchema"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"AbstractJsonSchemaPropertyObject": {
+				"type": "object",
+				"properties": {
+					"title": {
+						"type": "string"
+					},
+					"readOnly": {
+						"type": "boolean"
+					}
+				}
+			},
+			"Item": {
+				"type": "object",
+				"properties": {
+					"type": {
+						"type": "string"
+					},
+					"properties": {
+						"type": "object",
+						"additionalProperties": {
+							"$ref": "#/components/schemas/AbstractJsonSchemaPropertyObject"
+						}
+					},
+					"requiredProperties": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"JsonSchema": {
+				"type": "object",
+				"properties": {
+					"title": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"properties": {
+						"type": "object",
+						"additionalProperties": {
+							"$ref": "#/components/schemas/AbstractJsonSchemaPropertyObject"
+						}
+					},
+					"requiredProperties": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"definitions": {
+						"type": "object",
+						"additionalProperties": {
+							"$ref": "#/components/schemas/Item"
+						}
+					},
+					"type": {
+						"type": "string"
+					},
+					"$schema": {
+						"type": "string"
+					}
+				}
+			},
+			"Links": {
+				"type": "object",
+				"additionalProperties": {
+					"$ref": "#/components/schemas/Link"
+				}
+			},
+			"RepresentationModelObject": {
+				"type": "object",
+				"properties": {
+					"_links": {
+						"$ref": "#/components/schemas/Links"
+					}
+				}
+			},
+			"EntityModelEmpleado": {
+				"type": "object",
+				"properties": {
+					"nombre": {
+						"type": "string"
+					},
+					"nif": {
+						"type": "string"
+					},
+					"_links": {
+						"$ref": "#/components/schemas/Links"
+					}
+				}
+			},
+			"PageMetadata": {
+				"type": "object",
+				"properties": {
+					"size": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"totalElements": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"totalPages": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"number": {
+						"type": "integer",
+						"format": "int64"
+					}
+				}
+			},
+			"PagedModelEntityModelEmpleado": {
+				"type": "object",
+				"properties": {
+					"_embedded": {
+						"type": "object",
+						"properties": {
+							"empleados": {
+								"type": "array",
+								"items": {
+									"$ref": "#/components/schemas/EntityModelEmpleado"
+								}
+							}
+						}
+					},
+					"_links": {
+						"$ref": "#/components/schemas/Links"
+					},
+					"page": {
+						"$ref": "#/components/schemas/PageMetadata"
+					}
+				}
+			},
+			"CollectionModelObject": {
+				"type": "object",
+				"properties": {
+					"_embedded": {
+						"type": "object",
+						"properties": {
+							"objects": {
+								"type": "array",
+								"items": {
+									"type": "object"
+								}
+							}
+						}
+					},
+					"_links": {
+						"$ref": "#/components/schemas/Links"
+					}
+				}
+			},
+			"EmpleadoRequestBody": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"nombre": {
+						"type": "string"
+					},
+					"nif": {
+						"type": "string"
+					},
+					"jefe": {
+						"type": "string"
+					}
+				}
+			},
+			"Link": {
+				"type": "object",
+				"properties": {
+					"href": {
+						"type": "string"
+					},
+					"hreflang": {
+						"type": "string"
+					},
+					"title": {
+						"type": "string"
+					},
+					"type": {
+						"type": "string"
+					},
+					"deprecation": {
+						"type": "string"
+					},
+					"profile": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"templated": {
+						"type": "boolean"
+					}
+				}
+			}
+		}
+	}
+}

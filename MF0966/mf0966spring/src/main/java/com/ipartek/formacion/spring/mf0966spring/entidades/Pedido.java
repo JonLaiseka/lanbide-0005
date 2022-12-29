@@ -4,6 +4,10 @@ import java.math.BigDecimal;
 import java.util.Map;
 import java.util.TreeMap;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -71,8 +75,14 @@ public class Pedido {
 	@Data
 	@AllArgsConstructor
 	@NoArgsConstructor
+	@Entity
+	@Table(name = "facturas_has_productos")
 	public static class Linea {
+		@Id
+		@ManyToOne
 		private Factura factura;
+		@Id
+		@ManyToOne
 		private Producto producto;
 		private Integer cantidad;
 

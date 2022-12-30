@@ -28,11 +28,24 @@
 			<td th:text="${p.precio}">123,12€</td>
 			<td th:text="${p.categoria.nombre}">Categoria2</td>
 			<td>
-				<a href="#">Editar</a>
-				<a href="#">Borrar</a>
+				<a th:href="'producto/' + ${p.id}" href="#">Editar</a>
+				<a th:href="'producto/' + ${p.id} + '/borrar'"href="#">Borrar</a>
 			</td>
 		</tr>
 	</tbody>
+	<tfoot>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td>
+				<a th:href="producto" href="#">Añadir</a>
+			</td>
+			
+		</tr>
+	</tfoot>
 </table>
 
 </body>

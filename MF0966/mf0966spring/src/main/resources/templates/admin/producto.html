@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Producto</title>
+</head>
+<body>
+
+	<form action="#">
+		<input name="id" readonly placeholder="Id" value="1"
+			th:value="${producto?.id}"> <input name="nombre"
+			placeholder="Nombre" value="Pepe" th:value="${producto?.nombre}">
+		<input name="precio" placeholder="Precio" value="123,45"
+			th:value="${producto?.precio}"> <select name="categoria">
+			<option th:each="c: ${categorias}"
+				th:selected="${c.id == producto?.categoria?.id}" th:value="${c.id}"
+				th:text="${c.nombre}">Nombre de la categoría</option>
+		</select>
+
+		<button>Aceptar</button>
+	</form>
+
+</body>
+</html>

@@ -41,7 +41,7 @@ public class Producto {
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "producto")
 	private final Set<Linea> lineas = new HashSet<>();
 	
 	public Producto(String id, String nombre, String precio, String descripcion, String categoria) {

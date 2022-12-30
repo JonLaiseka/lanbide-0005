@@ -15,5 +15,14 @@ public class ProductoServiceImpl implements ProductoService {
 	public Iterable<Producto> obtenerTodos() {
 		return repo.findAll();
 	}
-	
+
+	@Override
+	public Producto obtenerPorId(Long id) {
+		return repo.findById(id).orElse(null);
+	}
+
+	@Override
+	public void borrar(Long id) {
+		repo.deleteById(id);
+	}
 }

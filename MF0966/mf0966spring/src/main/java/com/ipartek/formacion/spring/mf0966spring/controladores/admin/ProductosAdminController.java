@@ -3,6 +3,7 @@ package com.ipartek.formacion.spring.mf0966spring.controladores.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ipartek.formacion.spring.mf0966spring.entidades.Producto;
 import com.ipartek.formacion.spring.mf0966spring.servicios.CategoriaService;
 import com.ipartek.formacion.spring.mf0966spring.servicios.ProductoService;
+
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/admin")
@@ -31,7 +34,7 @@ public class ProductosAdminController {
 	}
 
 	@GetMapping({ "/producto", "/producto/{id}" })
-	public String mostrarFormularioProducto(@PathVariable(required = false) Long id, Model modelo) {
+	public String mostrarFormularioProducto(@PathVariable(required = false) Long id, Model modelo, Producto producto) {
 		if (id != null) {
 			modelo.addAttribute("producto", productoService.obtenerPorId(id));
 		}
@@ -48,8 +51,11 @@ public class ProductosAdminController {
 	}
 
 	@PostMapping("/producto")
-	public String guardarProducto(Producto producto) {
-		System.out.println(producto);
+	public String guardarProducto(@Valid Producto producto, BindingResult bindingResult, Model modelo) {
+		if(bindingResult.hasErrors()) {
+			modelo.addAttribute("categorias", categoriaService.obtenerTodas());
+			return "/admin/producto";
+		}
 		
 		if(producto.getId() == null) {
 			productoService.insertar(producto);

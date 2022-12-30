@@ -6,16 +6,25 @@
 </head>
 <body>
 
-	<form th:action="@{/admin/producto}" th:object="${producto}" action="#" method="post">
-		<input readonly placeholder="Id" value="1"
-			th:field="*{id}"> <input
-			placeholder="Nombre" value="Pepe" th:field="*{nombre}">
-		<input placeholder="Precio" value="123,45"
-			th:field="*{precio}"> <select name="categoria">
+	<form th:action="@{/admin/producto}" th:object="${producto}" action="#"
+		method="post">
+		<input readonly placeholder="Id" value="1" th:field="*{id}">
+		<div th:if="${#fields.hasErrors('id')}" th:errors="id">Error de
+			id</div>
+		<input placeholder="Nombre" value="Pepe" th:field="*{nombre}">
+		<div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error
+			de nombre</div>
+
+		<input placeholder="Precio" value="123,45" th:field="*{precio}">
+		<div th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">Error
+			de precio</div>
+		<select name="categoria">
 			<option th:each="c: ${categorias}"
 				th:selected="${c.id == producto?.categoria?.id}" th:value="${c.id}"
 				th:text="${c.nombre}">Nombre de la categoría</option>
 		</select>
+		<div th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}">Error
+			de categoria</div>
 
 		<button>Aceptar</button>
 	</form>

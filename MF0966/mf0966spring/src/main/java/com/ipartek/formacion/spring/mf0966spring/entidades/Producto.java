@@ -15,6 +15,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,55 +34,28 @@ public class Producto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Min(value = 0)
 	private Long id;
+
+	@NotNull
+	@NotBlank
+	@Size(min = 3, max = 45)
 	private String nombre;
+
+	@NotNull
+	@Min(value = 0)
 	private BigDecimal precio;
+
+	@Size(max = 5000)
 	private String descripcion;
-	
+
+	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "categorias_id")
 	private Categoria categoria;
-	
+
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "producto")
 	private final Set<Linea> lineas = new HashSet<>();
-	
-	public Producto(String id, String nombre, String precio, String descripcion, String categoria) {
-		setId(id);
-		setNombre(nombre);
-		setPrecio(precio);
-		setDescripcion(descripcion);
-		
-		setCategoria(categoria);
-	}
-
-	private void setId(String id) {
-		if(id == null) return;
-		
-		if(id.trim().length() != 0) {
-			setId(Long.parseLong(id));	
-		}
-	}
-	
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	private void setPrecio(String precio) {
-		setPrecio(new BigDecimal(precio));
-	}
-
-	public void setPrecio(BigDecimal precio) {
-		this.precio = precio;
-	}
-
-	private void setCategoria(String categoria) {
-		setCategoria(new Categoria(Long.parseLong(categoria), null, null));
-	}
-
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
 }

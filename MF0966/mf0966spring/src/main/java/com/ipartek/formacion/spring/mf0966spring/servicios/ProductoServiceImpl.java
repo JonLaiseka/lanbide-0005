@@ -25,4 +25,21 @@ public class ProductoServiceImpl implements ProductoService {
 	public void borrar(Long id) {
 		repo.deleteById(id);
 	}
+
+	@Override
+	public Producto insertar(Producto producto) {
+		if(producto.getId() != null) {
+			throw new ServiciosException("No se puede insertar un elemento con Id");
+		}
+		return repo.save(producto);
+	}
+	
+	public Producto modificar(Producto producto) {
+		if(producto.getId() == null) {
+			throw new ServiciosException("No se puede modificar un elemento sin saber su Id");
+		}
+		return repo.save(producto);
+	}
+	
+	
 }

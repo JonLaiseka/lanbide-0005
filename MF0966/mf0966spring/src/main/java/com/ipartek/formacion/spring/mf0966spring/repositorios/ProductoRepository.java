@@ -8,6 +8,6 @@ import com.ipartek.formacion.spring.mf0966spring.entidades.Producto;
 import java.util.Set;
 
 public interface ProductoRepository extends CrudRepository<Producto, Long> {
-	@Query("from Producto p join fetch p.categoria")
+	@Query("from Producto p join fetch p.categoria order by p.id")
 	public Set<Producto> findAll();
 }

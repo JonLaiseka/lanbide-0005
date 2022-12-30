@@ -6,7 +6,7 @@
 </head>
 <body>
 
-	<form action="#">
+	<form th:action="@{/admin/producto}" action="#" method="post">
 		<input name="id" readonly placeholder="Id" value="1"
 			th:value="${producto?.id}"> <input name="nombre"
 			placeholder="Nombre" value="Pepe" th:value="${producto?.nombre}">

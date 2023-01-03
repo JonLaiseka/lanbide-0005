@@ -1,31 +1,31 @@
 <!DOCTYPE html>
-<html th:replace="~{_plantilla :: plantilla(~{::title}, ~{::div})}"
+<html th:replace="~{_plantilla :: plantilla(~{::title}, ~{::main})}"
 	lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
 
 <title>Principal</title>
 </head>
 <body>
-	<div
+	<main
 		class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-4">
 		<div th:each="producto: ${productos}" th:object="${producto}"
 			class="col">
 			<div class="card h-100">
 				<img th:src="@{/imgs/{fichero}.jpg(fichero=*{id})}" src="..."
 					class="card-img-top" alt="">
-				<form class="card-body">
+				<form class="card-body d-flex flex-column">
 					<h5 class="card-title" th:text="*{nombre}">Card title</h5>
 					<p class="card-text text-end" th:text="*{#numbers.formatCurrency(precio)}">This
 						is a wider card with supporting text below as a natural lead-in to
 						additional content. This content is a little bit longer.</p>
-					<div class="input-group mb-3">
-						<button class="btn btn-outline-secondary" type="button"
+					<div class="input-group mb-3 mt-auto">
+						<button class="menos btn btn-outline-secondary" type="button"
 							id="button-addon1">-</button>
 						<input type="hidden" name="id" value="0" th:value="*{id}">
 						<input type="text" name="cantidad" value="0" class="text-center form-control"
 							placeholder="" aria-label="Example text with button addon"
 							aria-describedby="button-addon1">
-						<button class="btn btn-outline-secondary" type="button"
+						<button class="mas btn btn-outline-secondary" type="button"
 							id="button-addon1">+</button>
 					</div>
 					<div>
@@ -38,7 +38,8 @@
 				</div>
 			</div>
 		</div>
-	</div>
+		<script th:src="@{/js/cantidades.js}" src=""></script>
+	</main>
 
 </body>
 </html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html th:replace="~{_plantilla :: plantilla(~{::title}, ~{::main})}"
+	lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Carrito</title>
+</head>
+<body>
+	<main>
+		<table class="table table-sm table-hover table-bordered table-striped">
+			<caption>Carrito</caption>
+			<thead class="table-dark">
+				<tr>
+					<th class="text-end" scope="col">Id</th>
+					<th scope="col">Imagen</th>
+					<th scope="col">Nombre</th>
+					<th class="text-end" scope="col">Precio</th>
+					<th scope="col">Cantidad</th>
+					<th scope="col">Opciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="linea: ${carrito.lineas}">
+					<th class="text-end" scope="row" th:text="${linea.producto.id}">1</th>
+					<td><img height="50"
+						th:src="@{/imgs/{imagen}.jpg(imagen=${linea.producto.id})}" src="#" alt="">
+					</td>
+					<td th:text="${linea.producto.nombre}">Producto1</td>
+					<td class="text-end" th:text="${#numbers.formatCurrency(linea.producto.precio)}">123,12€</td>
+					<td th:text="${linea.cantidad}">6</td>
+					<td><a class="btn btn-sm btn-primary"
+						th:href="'producto/' + ${linea.producto.id}" href="#">Editar</a> <a
+						class="btn btn-sm btn-danger"
+						th:href="'producto/' + ${linea.producto.id} + '/borrar'" href="#">Borrar</a></td>
+				</tr>
+			</tbody>
+			<tfoot class="table-dark">
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><a class="btn btn-primary btn-sm" th:href="producto"
+						href="#">Añadir</a></td>
+
+				</tr>
+			</tfoot>
+		</table>
+	</main>
+</body>
+</html>

@@ -35,13 +35,20 @@ public class WebSecurityConfig {
     // AUTENTICACIÓN
 	@Bean
 	UserDetailsService userDetailsService() {
-		UserDetails user =
+		UserDetails admin =
 			 User.withDefaultPasswordEncoder()
 				.username("admin")
 				.password("contra")
 				.roles("ADMIN")
 				.build();
+		
+		UserDetails usuario =
+				 User.withDefaultPasswordEncoder()
+					.username("pepe")
+					.password("perez")
+					.roles("USER")
+					.build();
 
-		return new InMemoryUserDetailsManager(user);
+		return new InMemoryUserDetailsManager(admin, usuario);
 	}
 }

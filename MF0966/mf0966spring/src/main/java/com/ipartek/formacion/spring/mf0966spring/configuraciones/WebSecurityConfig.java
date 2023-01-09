@@ -24,7 +24,7 @@ public class WebSecurityConfig {
 	
 	// PASSWORD ENCODER
 	@Bean
-	public PasswordEncoder passwordEncoder() {
+	PasswordEncoder passwordEncoder() {
 	    return NoOpPasswordEncoder.getInstance();
 	}
 	
@@ -32,7 +32,14 @@ public class WebSecurityConfig {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 	  throws Exception {
-	    auth.jdbcAuthentication().dataSource(dataSource);
+	    auth.jdbcAuthentication().dataSource(dataSource)
+			.usersByUsernameQuery("select email,password,true "
+		            + "from usuarios "
+		            + "where email = ?")
+			.authoritiesByUsernameQuery("select u.email, CONCAT('ROLE_', r.nombre) "
+		      		+ "from usuarios u "
+		      		+ "join roles r on r.id = u.roles_id "
+		      		+ "where email = ?");
 	}
 	
 	// AUTORIZACIÓN

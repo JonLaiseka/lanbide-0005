@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html th:replace="~{_plantilla :: plantilla(~{::title}, ~{::main})}"
+	lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Confirmacion</title>
+</head>
+<body>
+	<main>
+		<div class="d-flex">
+			<div>Datos de la tienda</div>
+			<div class="ms-auto" th:object="${usuario.cliente}">
+				<p>Datos del cliente</p>
+				<p th:text="*{nombre}">Nombre</p>
+				<p th:text="*{nif}">NIF</p>
+				<p th:text="*{email}">Email</p>
+			</div>
+		</div>
+		<!--/*-->
+		<pre th:text="${usuario}">Datos de cliente</pre>
+		<pre th:text="'^' + ${carrito} + '$'"></pre>
+		<!--*/-->
+		<table class="table table-sm table-bordered">
+			<caption>Carrito</caption>
+			<thead>
+				<tr>
+					<th class="text-end" scope="col">Id</th>
+					<th scope="col">Imagen</th>
+					<th scope="col">Nombre</th>
+					<th class="text-end" scope="col">Precio</th>
+					<th class="text-end" scope="col">Cantidad</th>
+					<th class="text-end" scope="col">Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="linea: ${carrito.lineas}">
+					<th class="text-end" scope="row" th:text="${linea.producto.id}">1</th>
+					<td><img height="50"
+						th:src="@{/imgs/{imagen}.jpg(imagen=${linea.producto.id})}" src="#" alt="">
+					</td>
+					<td th:text="${linea.producto.nombre}">Producto1</td>
+					<td class="text-end" th:text="${#numbers.formatCurrency(linea.producto.precio)}">123,12€</td>
+					<td class="text-end" th:text="${linea.cantidad}">6</td>
+					<td class="text-end" th:text="${#numbers.formatCurrency(linea.total)}">1234€</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<th scope="col" class="text-end" th:text="${#numbers.formatCurrency(carrito.total)}">12341234€</th>
+				</tr>
+			</tfoot>
+		</table>
+	</main>
+</body>
+</html>

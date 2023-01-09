@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html th:replace="~{_plantilla :: plantilla(~{::title}, ~{::form})}" lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Cliente</title>
+</head>
+<body>
+
+	<form th:action="@{/alta-cliente}" th:object="${cliente}" action="#"
+		method="post">
+		<div class="row mb-3">
+			<label class="col-sm-2 form-label" for="id">Id</label>
+			<div class="col-sm-10">
+				<input th:classappend="${#fields.hasErrors('id')} ? is-invalid: ''" class="form-control" readonly placeholder="Id" value="1"
+					th:field="*{id}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('id')}" th:errors="id">Error
+					de id</div>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label class="col-sm-2 form-label" for="nombre">Nombre</label>
+			<div class="col-sm-10">
+				<input th:classappend="${#fields.hasErrors('nombre')} ? is-invalid: ''" class="form-control" placeholder="Nombre" value="Pepe" th:field="*{nombre}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error
+					de nombre</div>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label class="col-sm-2 form-label" for="nif">NIF</label>
+			<div class="col-sm-10">
+				<input th:classappend="${#fields.hasErrors('nif')} ? is-invalid: ''" class="form-control" placeholder="NIF" value="12345678Z" th:field="*{nif}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('nif')}" th:errors="*{nif}">Error
+					de NIF</div>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label class="col-sm-2 form-label" for="email">Email</label>
+			<div class="col-sm-10">
+				<input th:classappend="${#fields.hasErrors('email')} ? is-invalid: ''" class="form-control" placeholder="Email" value="a@b.c" th:field="*{email}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error
+					de Email</div>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<div class="offset-sm-2 col-sm-10">
+				<button class="btn btn-primary">Aceptar</button>
+			</div>
+		</div>
+	</form>
+
+</body>
+</html>

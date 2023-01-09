@@ -26,10 +26,11 @@
 				<tr th:each="linea: ${carrito.lineas}">
 					<th class="text-end" scope="row" th:text="${linea.producto.id}">1</th>
 					<td><img height="50"
-						th:src="@{/imgs/{imagen}.jpg(imagen=${linea.producto.id})}" src="#" alt="">
-					</td>
+						th:src="@{/imgs/{imagen}.jpg(imagen=${linea.producto.id})}"
+						src="#" alt=""></td>
 					<td th:text="${linea.producto.nombre}">Producto1</td>
-					<td class="text-end" th:text="${#numbers.formatCurrency(linea.producto.precio)}">123,12€</td>
+					<td class="text-end"
+						th:text="${#numbers.formatCurrency(linea.producto.precio)}">123,12€</td>
 					<td th:text="${linea.cantidad}">6</td>
 					<td><a class="btn btn-sm btn-primary"
 						th:href="'producto/' + ${linea.producto.id}" href="#">Editar</a> <a
@@ -44,12 +45,15 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td><a class="btn btn-primary btn-sm" th:href="producto"
+					<td><a class="btn btn-primary btn-sm" th:href="@{/}"
 						href="#">Añadir</a></td>
 
 				</tr>
 			</tfoot>
 		</table>
+		<p>
+			<a class="btn btn-primary btn-sm" th:href="@{/confirmacion}" href="#">Confirmación</a>
+		</p>
 	</main>
 </body>
 </html>

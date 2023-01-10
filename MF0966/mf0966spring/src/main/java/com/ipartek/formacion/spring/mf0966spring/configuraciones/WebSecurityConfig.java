@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 // https://www.baeldung.com/spring-security-jdbc-authentication
@@ -21,6 +22,10 @@ public class WebSecurityConfig {
 	DataSource dataSource;
 	
 	// https://bcrypt-generator.com/
+	@Bean
+	PasswordEncoder getPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 	
 	// AUTENTICACIÓN
 	@Autowired
@@ -33,8 +38,7 @@ public class WebSecurityConfig {
 			.authoritiesByUsernameQuery("select u.email, CONCAT('ROLE_', r.nombre) "
 		      		+ "from usuarios u "
 		      		+ "join roles r on r.id = u.roles_id "
-		      		+ "where email = ?")
-			.passwordEncoder(new BCryptPasswordEncoder());
+		      		+ "where email = ?");
 	}
 	
 	// AUTORIZACIÓN

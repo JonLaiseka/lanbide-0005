@@ -7,4 +7,6 @@ public interface UsuarioService {
 	Usuario buscarPorEmail(String email);
 	
 	Usuario altaDatosCliente(Long idUsuario, Cliente cliente);
+
+	Usuario registrar(Usuario usuario);
 }

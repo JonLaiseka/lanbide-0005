@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ipartek.formacion.spring.mf0966spring.entidades.Producto;
 import com.ipartek.formacion.spring.mf0966spring.servicios.CategoriaService;
@@ -32,8 +33,7 @@ import lombok.extern.java.Log;
 public class ProductosAdminController {
 	public static final String UPLOAD_DIRECTORY = getResourceAsFile("static/imgs").getAbsolutePath(); // System.getProperty("user.dir")
 																										// +
-																										// "/WEB-INF/classes/static/imgs";
-																										// //"/src/main/resources/static/imgs";
+																								// //"/src/main/resources/static/imgs";
 
 	@Autowired
 	private ProductoService productoService;
@@ -78,10 +78,14 @@ public class ProductosAdminController {
 
 	@PostMapping("/producto")
 	public String guardarProducto(@Valid Producto producto, BindingResult bindingResult, Model modelo,
-			@RequestParam("imagen") MultipartFile imagen) {
+			@RequestParam("imagen") MultipartFile imagen, RedirectAttributes redirectAttributes) {
 
 		if (bindingResult.hasErrors()) {
 			modelo.addAttribute("categorias", categoriaService.obtenerTodas());
+			
+			modelo.addAttribute("mensaje", "Corrige los errores en los campos");
+			modelo.addAttribute("nivel", "danger");
+				
 			return "/admin/producto";
 		}
 
@@ -103,6 +107,9 @@ public class ProductosAdminController {
 				return "admin/producto";
 			}
 		}
+		
+		redirectAttributes.addFlashAttribute("mensaje", "Modificación del producto correcta");
+		redirectAttributes.addFlashAttribute("nivel", "success");
 		
 		return "redirect:/admin/productos";
 	}

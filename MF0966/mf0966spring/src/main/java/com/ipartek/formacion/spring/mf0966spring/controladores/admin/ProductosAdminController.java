@@ -1,23 +1,40 @@
 package com.ipartek.formacion.spring.mf0966spring.controladores.admin;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ipartek.formacion.spring.mf0966spring.entidades.Producto;
 import com.ipartek.formacion.spring.mf0966spring.servicios.CategoriaService;
 import com.ipartek.formacion.spring.mf0966spring.servicios.ProductoService;
 
 import jakarta.validation.Valid;
+import lombok.extern.java.Log;
 
+@Log
 @Controller
 @RequestMapping("/admin")
 public class ProductosAdminController {
+	public static final String UPLOAD_DIRECTORY = getResourceAsFile("static/imgs").getAbsolutePath(); // System.getProperty("user.dir")
+																										// +
+																										// "/WEB-INF/classes/static/imgs";
+																										// //"/src/main/resources/static/imgs";
+
 	@Autowired
 	private ProductoService productoService;
 
@@ -31,6 +48,15 @@ public class ProductosAdminController {
 		modelo.addAttribute("productos", productos);
 
 		return "admin/productos";
+	}
+
+	public static File getResourceAsFile(String relativeFilePath) {
+		try {
+			return ResourceUtils.getFile(String.format("classpath:%s", relativeFilePath));
+		} catch (FileNotFoundException e) {
+			log.throwing(ProductosAdminController.class.getName(), "getResourceAsFile", e);
+			return null;
+		}
 	}
 
 	@GetMapping({ "/producto", "/producto/{id}" })
@@ -51,16 +77,31 @@ public class ProductosAdminController {
 	}
 
 	@PostMapping("/producto")
-	public String guardarProducto(@Valid Producto producto, BindingResult bindingResult, Model modelo) {
-		if(bindingResult.hasErrors()) {
+	public String guardarProducto(@Valid Producto producto, BindingResult bindingResult, Model modelo,
+			@RequestParam("imagen") MultipartFile imagen) {
+
+		if (bindingResult.hasErrors()) {
 			modelo.addAttribute("categorias", categoriaService.obtenerTodas());
 			return "/admin/producto";
 		}
-		
-		if(producto.getId() == null) {
+
+		if (producto.getId() == null) {
 			productoService.insertar(producto);
 		} else {
 			productoService.modificar(producto);
+		}
+
+		String nombre = imagen.getOriginalFilename();
+		if (nombre != null && nombre.trim().length() != 0) {
+
+			Path ruta = Paths.get(UPLOAD_DIRECTORY, producto.getId() + ".jpg");
+			try {
+				log.info(ruta.toString());
+				Files.write(ruta, imagen.getBytes());
+			} catch (IOException e) {
+				log.throwing(ProductosAdminController.class.getName(), "guardarProducto", e);
+				return "admin/producto";
+			}
 		}
 		
 		return "redirect:/admin/productos";

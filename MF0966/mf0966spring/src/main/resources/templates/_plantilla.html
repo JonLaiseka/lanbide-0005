@@ -39,7 +39,7 @@
 								href="#">Productos</a></li>
 						</ul></li>
 					<li class="nav-item navbar-text" sec:authorize="isAuthenticated()"
-						sec:authentication="name">Usuario</li>
+						th:text="${usuario.email} + ': ' + ${usuario.rol.nombre}">Usuario</li>
 					<li class="nav-item" sec:authorize="!isAuthenticated()"><a
 						class="nav-link" th:href="@{/login}" href="#">Login</a></li>
 					<li class="nav-item" sec:authorize="isAuthenticated()">

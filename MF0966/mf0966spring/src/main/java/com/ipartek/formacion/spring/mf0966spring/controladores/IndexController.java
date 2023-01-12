@@ -125,7 +125,7 @@ public class IndexController {
 	}
 
 	@GetMapping("/confirmacion")
-	public String confirmacion(@SessionAttribute Usuario usuario, Model modelo) {
+	public String confirmacion(@ModelAttribute Usuario usuario) {
 		if (usuario == null || usuario.getCliente() == null) {
 			return "redirect:/alta-cliente";
 		}
@@ -139,7 +139,7 @@ public class IndexController {
 	}
 
 	@PostMapping("/alta-cliente")
-	public String altaClientePost(@SessionAttribute Usuario usuario, @Valid Cliente cliente,
+	public String altaClientePost(@ModelAttribute Usuario usuario, @Valid Cliente cliente,
 			BindingResult bindingResult, Model modelo) {
 		if (bindingResult.hasErrors()) {
 			return "alta-cliente";

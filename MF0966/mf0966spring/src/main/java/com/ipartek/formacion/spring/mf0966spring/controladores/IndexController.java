@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -150,6 +151,13 @@ public class IndexController {
 		return "redirect:/confirmacion";
 	}
 
+	@GetMapping("/quitar-del-carrito/{id}")
+	public String quitarDelCarrito(@PathVariable Long id, @SessionAttribute Pedido carrito) {
+		carrito.getLineasPorId().remove(id);
+		
+		return "redirect:/carrito";
+	}
+	
 	@GetMapping("/cerrar-sesion")
 	public String abandonarCarrito(SessionStatus status) {
 		status.setComplete();

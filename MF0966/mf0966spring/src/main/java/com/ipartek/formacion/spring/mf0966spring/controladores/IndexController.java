@@ -24,9 +24,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.ipartek.formacion.spring.mf0966spring.entidades.Cliente;
+import com.ipartek.formacion.spring.mf0966spring.entidades.Factura;
 import com.ipartek.formacion.spring.mf0966spring.entidades.Pedido;
 import com.ipartek.formacion.spring.mf0966spring.entidades.Usuario;
 import com.ipartek.formacion.spring.mf0966spring.servicios.CarritoService;
+import com.ipartek.formacion.spring.mf0966spring.servicios.FacturaService;
 import com.ipartek.formacion.spring.mf0966spring.servicios.ProductoService;
 import com.ipartek.formacion.spring.mf0966spring.servicios.UsuarioService;
 
@@ -69,6 +71,9 @@ public class IndexController {
 
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private FacturaService facturaService;
 
 	@GetMapping
 	public String index(Model modelo) {
@@ -156,6 +161,16 @@ public class IndexController {
 		carrito.getLineasPorId().remove(id);
 		
 		return "redirect:/carrito";
+	}
+	
+	@GetMapping("/factura")
+	public String factura(@SessionAttribute Pedido carrito, @ModelAttribute Usuario usuario, Model modelo) {
+		Factura factura = facturaService.obtenerFactura(carrito, usuario.getCliente());
+		facturaService.guardarFactura(factura);
+		
+		modelo.addAttribute(factura);
+		
+		return "factura";
 	}
 	
 	@GetMapping("/cerrar-sesion")

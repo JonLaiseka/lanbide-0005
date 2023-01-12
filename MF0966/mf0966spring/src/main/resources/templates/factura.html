@@ -9,11 +9,15 @@
 	<main>
 		<div class="d-flex">
 			<div>Datos de la tienda</div>
-			<div class="ms-auto" th:object="${usuario.cliente}">
+			<div class="ms-auto" th:object="${factura.cliente}">
 				<p>Datos del cliente</p>
+				<p th:text="${factura.codigo}">Codigo</p>
 				<p th:text="*{nombre}">Nombre</p>
 				<p th:text="*{nif}">NIF</p>
 				<p th:text="*{email}">Email</p>
+				<p th:text="${factura.fecha}">Fecha</p>
+				<p th:text="${factura.empleado.nombre}">Nombre de empleado</p>
+				<p th:text="${factura.empleado.jefe.nombre}">Nombre del jefe</p>
 			</div>
 		</div>
 		<!--/*-->
@@ -21,7 +25,7 @@
 		<pre th:text="'^' + ${carrito} + '$'"></pre>
 		<!--*/-->
 		<table class="table table-sm table-bordered">
-			<caption>Carrito</caption>
+			<caption>FACTURA</caption>
 			<thead>
 				<tr>
 					<th class="text-end" scope="col">Id</th>
@@ -33,7 +37,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="linea: ${carrito.lineas}">
+				<tr th:each="linea: ${factura.lineas}">
 					<th class="text-end" scope="row" th:text="${linea.producto.id}">1</th>
 					<td><img height="50"
 						th:src="@{/imgs/{imagen}.jpg(imagen=${linea.producto.id})}" src="#" alt="">
@@ -51,7 +55,7 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<th scope="col" class="text-end" th:text="${#numbers.formatCurrency(carrito.total)}">12341234€</th>
+					<th scope="col" class="text-end" th:text="${#numbers.formatCurrency(factura.total)}">12341234€</th>
 				</tr>
 			</tfoot>
 		</table>

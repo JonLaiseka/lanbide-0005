@@ -30,6 +30,7 @@ public class Factura extends Pedido {
 	@ManyToOne
 	@JoinColumn(name = "clientes_id")
 	private Cliente cliente;
+	
 	@ManyToOne
 	@JoinColumn(name = "empleados_id")
 	private Empleado empleado;

@@ -37,5 +37,9 @@ public class Factura extends Pedido {
 
 	public Factura(Pedido pedido) {
 		this.lineas = pedido.lineas;
+		
+		this.lineas.values().forEach(linea -> {
+			linea.setFactura(this);
+		});
 	}
 }

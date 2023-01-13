@@ -48,7 +48,12 @@ public class FacturaServiceImpl implements FacturaService {
 
 	@Override
 	public Factura guardarFactura(Factura factura) {
-		return repoFactura.save(factura);
+		Factura facturaGenerada = repoFactura.save(factura);
+		
+		System.out.println(facturaGenerada);
+		System.out.println(facturaGenerada.getLineas());
+		
+		return facturaGenerada;
 	}
 	
 	

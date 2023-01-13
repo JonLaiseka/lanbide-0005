@@ -1,7 +1,5 @@
 package com.ipartek.formacion.spring.mf0966spring.controladores;
 
-import java.security.Principal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -30,7 +28,6 @@ import com.ipartek.formacion.spring.mf0966spring.entidades.Usuario;
 import com.ipartek.formacion.spring.mf0966spring.servicios.CarritoService;
 import com.ipartek.formacion.spring.mf0966spring.servicios.FacturaService;
 import com.ipartek.formacion.spring.mf0966spring.servicios.ProductoService;
-import com.ipartek.formacion.spring.mf0966spring.servicios.UsuarioService;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -39,8 +36,8 @@ import lombok.extern.java.Log;
 @Log
 @Controller
 @RequestMapping("/")
-@SessionAttributes({ "carrito", "usuario" })
-public class IndexController {
+@SessionAttributes("carrito")
+public class IndexController extends GlobalController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
@@ -52,25 +49,11 @@ public class IndexController {
 		return new Pedido();
 	}
 
-	@ModelAttribute("usuario")
-	public Usuario getUsuario(Principal principal) {
-		if (principal == null) {
-			return null;
-		}
-
-		String email = principal.getName();
-
-		return usuarioService.buscarPorEmail(email);
-	}
-
 	@Autowired
 	private ProductoService productoService;
 
 	@Autowired
 	private CarritoService carritoService;
-
-	@Autowired
-	private UsuarioService usuarioService;
 	
 	@Autowired
 	private FacturaService facturaService;

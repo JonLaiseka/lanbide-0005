@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ipartek.formacion.spring.mf0966spring.controladores.GlobalController;
 import com.ipartek.formacion.spring.mf0966spring.entidades.Producto;
 import com.ipartek.formacion.spring.mf0966spring.servicios.CategoriaService;
 import com.ipartek.formacion.spring.mf0966spring.servicios.ProductoService;
@@ -30,11 +31,9 @@ import lombok.extern.java.Log;
 @Log
 @Controller
 @RequestMapping("/admin")
-public class ProductosAdminController {
-	public static final String UPLOAD_DIRECTORY = getResourceAsFile("static/imgs").getAbsolutePath(); // System.getProperty("user.dir")
-																										// +
-																								// //"/src/main/resources/static/imgs";
-
+public class ProductosAdminController extends GlobalController {
+	public static final String UPLOAD_DIRECTORY = getResourceAsFile("static/imgs").getAbsolutePath();
+	
 	@Autowired
 	private ProductoService productoService;
 

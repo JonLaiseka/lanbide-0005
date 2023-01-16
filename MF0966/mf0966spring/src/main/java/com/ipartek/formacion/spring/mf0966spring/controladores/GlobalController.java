@@ -10,10 +10,6 @@ import com.ipartek.formacion.spring.mf0966spring.servicios.UsuarioService;
 
 public class GlobalController {
 
-	public GlobalController() {
-		super();
-	}
-
 	@Autowired UsuarioService usuarioService;
 	
 	@ModelAttribute("usuario")

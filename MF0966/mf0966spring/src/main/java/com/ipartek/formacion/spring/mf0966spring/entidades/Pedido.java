@@ -6,8 +6,10 @@ import java.util.TreeMap;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -80,9 +82,12 @@ public class Pedido {
 	public static class Linea {
 		@Id
 		@ManyToOne
+		@JoinColumn(name = "facturas_id")
 		private Factura factura;
+		
 		@Id
 		@ManyToOne
+		@JoinColumn(name = "productos_id")
 		private Producto producto;
 		private Integer cantidad;
 
@@ -91,6 +96,7 @@ public class Pedido {
 			this.cantidad = cantidad;
 		}
 
+		@Transient
 		public BigDecimal getTotal() {
 			return this.producto.getPrecio().multiply(new BigDecimal(cantidad));
 		}

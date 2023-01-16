@@ -17,22 +17,22 @@ public class FacturaServiceImpl implements FacturaService {
 
 	@Autowired
 	private FacturaRepository repoFactura;
-	
+
 	private final Empleado empleado;
-	
+
 	public FacturaServiceImpl(EmpleadoRepository repoEmpleado) {
 		empleado = repoEmpleado.findById(5L).orElse(null);
 	}
-	
+
 	@Override
 	public Factura obtenerFactura(Pedido pedido, Cliente cliente) {
 		Factura factura = new Factura(pedido);
-		
+
 		factura.setEmpleado(empleado);
 		factura.setCliente(cliente);
 		factura.setFecha(LocalDate.now());
 		factura.setCodigo(obtenerCodigoNuevo(factura.getFecha().getYear()));
-		
+
 		return factura;
 	}
 
@@ -40,9 +40,13 @@ public class FacturaServiceImpl implements FacturaService {
 	public String obtenerCodigoNuevo(int anno) {
 		String codigoUltimo = repoFactura.buscarUltimoCodigo(String.valueOf(anno));
 
-		int numeroUltimo = Integer.parseInt(codigoUltimo.split("-")[1]);
-		int numeroNuevo = numeroUltimo + 1;
-		
+		int numeroNuevo = 0;
+
+		if (codigoUltimo != null) {
+			int numeroUltimo = Integer.parseInt(codigoUltimo.split("-")[1]);
+			numeroNuevo = numeroUltimo + 1;
+		}
+
 		return String.format("%d-%03d", anno, numeroNuevo);
 	}
 
@@ -50,7 +54,5 @@ public class FacturaServiceImpl implements FacturaService {
 	public Factura guardarFactura(Factura factura) {
 		return repoFactura.save(factura);
 	}
-	
-	
-	
+
 }

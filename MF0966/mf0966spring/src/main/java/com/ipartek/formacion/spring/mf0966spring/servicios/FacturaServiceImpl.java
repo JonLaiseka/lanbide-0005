@@ -55,4 +55,9 @@ public class FacturaServiceImpl implements FacturaService {
 		return repoFactura.save(factura);
 	}
 
+	@Override
+	public Factura obtenerFacturaPorCodigo(String codigo) {
+		return repoFactura.findByCodigo(codigo);
+	}
+
 }

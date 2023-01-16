@@ -8,4 +8,6 @@ import com.ipartek.formacion.spring.mf0966spring.entidades.Factura;
 public interface FacturaRepository extends CrudRepository<Factura, Long> {
 	@Query("select f.codigo from Factura f where f.codigo like :anno% order by f.codigo desc limit 1")
 	String buscarUltimoCodigo(String anno);
+
+	Factura findByCodigo(String codigo);
 }

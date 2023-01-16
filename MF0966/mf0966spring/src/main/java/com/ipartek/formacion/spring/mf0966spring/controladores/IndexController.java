@@ -147,9 +147,18 @@ public class IndexController extends GlobalController {
 	}
 	
 	@GetMapping("/factura")
-	public String factura(@SessionAttribute Pedido carrito, @ModelAttribute Usuario usuario, Model modelo) {
+	public String facturar(@SessionAttribute Pedido carrito, @ModelAttribute Usuario usuario, Model modelo) {
 		Factura factura = facturaService.obtenerFactura(carrito, usuario.getCliente());
 		facturaService.guardarFactura(factura);
+		
+		modelo.addAttribute(factura);
+		
+		return "redirect:/factura/" + factura.getCodigo();
+	}
+	
+	@GetMapping("/factura/{codigo}") 
+	public String facturaVisualizar(@PathVariable String codigo, Model modelo) {
+		Factura factura = facturaService.obtenerFacturaPorCodigo(codigo);
 		
 		modelo.addAttribute(factura);
 		

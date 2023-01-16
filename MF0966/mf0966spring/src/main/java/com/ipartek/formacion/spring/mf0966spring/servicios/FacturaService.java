@@ -8,4 +8,5 @@ public interface FacturaService {
 	Factura obtenerFactura(Pedido pedido, Cliente cliente);
 	String obtenerCodigoNuevo(int anno);
 	Factura guardarFactura(Factura factura);
+	Factura obtenerFacturaPorCodigo(String codigo);
 }

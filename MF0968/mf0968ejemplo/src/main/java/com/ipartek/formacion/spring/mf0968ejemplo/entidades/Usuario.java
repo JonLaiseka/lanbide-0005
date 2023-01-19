@@ -2,6 +2,9 @@ package com.ipartek.formacion.spring.mf0968ejemplo.entidades;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,6 +39,7 @@ public class Usuario {
 	@Size(min = 3, max = 100)
 	private String nombre;
 	
+	@DateTimeFormat(iso = ISO.DATE)
 	@Past
 	private LocalDate fechaNacimiento;
 	
@@ -45,7 +49,7 @@ public class Usuario {
 	private Integer nivel = 0;
 	
 	@Column(columnDefinition = "CHAR(9)")
-	@Pattern(regexp = "^[XYZ\\d]\\d{7}[A-Z]$")
+	@Pattern(regexp = "^[XYZ\\d]\\d{7}[A-Z]$", message = "debe tener el formato correcto")
 	private String dni;
 	
 	@NotNull

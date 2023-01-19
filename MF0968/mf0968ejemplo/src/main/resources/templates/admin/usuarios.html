@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html th:replace="~{_plantilla :: plantilla(~{::title}, ~{::div})}"
+	lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Usuarios</title>
+</head>
+<body>
+	<div class="table-responsive">
+		<table class="table table-sm table-hover table-bordered table-striped">
+			<caption>Usuarios</caption>
+			<thead class="table-dark">
+				<tr>
+					<th class="text-end" scope="col">Id</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Fecha de nacimiento</th>
+					<th class="text-end" scope="col">Nivel</th>
+					<th scope="col">D.N.I.</th>
+					<th scope="col">Email</th>
+					<th scope="col">Rol</th>
+					<th scope="col">OPCIONES</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="u: ${usuarios}">
+					<th class="text-end" scope="row" th:text="${u.id}">1</th>
+					<td th:text="${u.nombre}">Nombre1</td>
+					<td th:text="${u.fechaNacimiento}">Fecha de nacimiento1</td>
+					<td class="text-end" th:text="${u.nivel}">5</td>
+					<td th:text="${u.dni}">12345678Z</td>
+					<td th:text="${u.email}">a@b.c</td>
+					<td th:text="${u.rol.nombre}">ROLE_USER</td>
+					<td><a class="btn btn-sm btn-primary"
+						th:href="@{/admin/usuarios/} + ${u.id}" href="#">Editar</a> <a
+						class="btn btn-sm btn-danger"
+						th:href="@{/admin/usuarios/borrar/} + ${u.id}" href="#">Borrar</a></td>
+				</tr>
+			</tbody>
+			<tfoot class="table-dark">
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><a class="btn btn-primary btn-sm"
+						th:href="@{/admin/usuarios/insertar}" href="#">Añadir</a></td>
+
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</body>
+</html>

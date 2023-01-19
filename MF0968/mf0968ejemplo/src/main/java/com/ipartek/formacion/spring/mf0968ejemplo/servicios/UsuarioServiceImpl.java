@@ -62,4 +62,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return repoRol.findAll();
 	}
 
+	@Override
+	public List<Usuario> buscarPorRol(String rol) {
+		return repo.findByRol(rol);
+	}
+
 }

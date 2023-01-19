@@ -13,6 +13,6 @@ import com.ipartek.formacion.spring.mf0968ejemplo.entidades.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	Optional<Usuario> findByEmail(String email);
 
-	@Query("from Usuario u join fetch u.rol r where r.nombre = :rol")
+	@Query("from Usuario u join fetch u.rol r where r.nombre like %:rol%")
 	List<Usuario> findByRol(String rol);
 }

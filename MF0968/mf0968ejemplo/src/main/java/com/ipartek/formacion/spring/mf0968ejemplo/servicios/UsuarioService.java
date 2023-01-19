@@ -15,4 +15,5 @@ public interface UsuarioService {
 	void borrar(Long id);
 	
 	List<Rol> obtenerRoles();
+	List<Usuario> buscarPorRol(String rol);
 }

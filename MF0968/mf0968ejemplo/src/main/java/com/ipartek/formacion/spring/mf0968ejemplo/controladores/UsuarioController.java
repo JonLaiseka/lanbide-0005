@@ -17,6 +17,7 @@ import jakarta.validation.Valid;
 @Controller
 @RequestMapping("/admin/usuarios")
 public class UsuarioController {
+	private static final String ADMIN_USUARIOS = "admin/usuarios";
 	private static final String ADMIN_USUARIO = "admin/usuario";
 	@Autowired
 	private UsuarioService servicio;
@@ -24,7 +25,7 @@ public class UsuarioController {
 	@GetMapping
 	public String listado(Model modelo) {
 		modelo.addAttribute("usuarios", servicio.obtenerTodos());
-		return "admin/usuarios";
+		return ADMIN_USUARIOS;
 	}
 	
 	@GetMapping("insertar")
@@ -46,11 +47,8 @@ public class UsuarioController {
 	@PostMapping
 	public String aceptar(@Valid Usuario usuario, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
-			System.out.println(bindingResult);
 			return ADMIN_USUARIO;
 		}
-		
-		System.out.println(usuario);
 		
 		if(usuario.getId() != null) {
 			servicio.modificar(usuario);
@@ -58,13 +56,20 @@ public class UsuarioController {
 			servicio.insertar(usuario);
 		}
 		
-		return "redirect:/admin/usuarios";
+		return "redirect:/" + ADMIN_USUARIOS;
 	}
 	
 	@GetMapping("borrar/{id}")
 	public String borrar(@PathVariable Long id) {
 		servicio.borrar(id);
 		
-		return "redirect:/admin/usuarios";
+		return "redirect:/" + ADMIN_USUARIOS;
+	}
+	
+	@PostMapping("buscar/rol")
+	public String buscarPorRol(String rol, Model modelo) {
+		modelo.addAttribute("usuarios", servicio.buscarPorRol(rol));
+		
+		return ADMIN_USUARIOS;
 	}
 }

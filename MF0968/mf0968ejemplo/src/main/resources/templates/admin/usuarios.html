@@ -10,6 +10,20 @@
 			<caption>Usuarios</caption>
 			<thead class="table-dark">
 				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<form th:action="@{/admin/usuarios/buscar/rol}" method="post">
+							<input style="width: 9rem" class="form-control" type="search" name="rol" placeholder="Buscar por rol">
+						</form>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
 					<th class="text-end" scope="col">Id</th>
 					<th scope="col">Nombre</th>
 					<th scope="col">Fecha de nacimiento</th>
